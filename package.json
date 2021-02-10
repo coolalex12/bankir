@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --open",
     "build": "ng build --prod --base-href \"https://coolalex12.github.io/bankir/\"",
     "deploy": "ngh --dir dist/bankir",
     "test": "ng test",
@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~11.1.2",
     "@angular/router": "~11.1.2",
     "@ngrx/effects": "^11.0.0",
+    "@ngrx/entity": "^11.0.0",
     "@ngrx/store": "^11.0.0",
     "@ngrx/store-devtools": "^11.0.0",
     "rxjs": "~6.6.0",
