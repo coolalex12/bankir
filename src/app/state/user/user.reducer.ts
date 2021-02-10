@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { User } from './user.model';
 import * as UserActions from './user.actions';
+import { User } from '@app/models';
 
 export const usersFeatureKey = 'users';
 
@@ -16,7 +16,7 @@ export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
 // });
 
 export const initialState: State = adapter.setAll(
-  [{ id: '123' }],
+  [{ id: '123', name: 'Вася' }],
   adapter.getInitialState()
 );
 
