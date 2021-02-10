@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "bankir"
+  "defaultProject": "bankir",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
