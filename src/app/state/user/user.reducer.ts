@@ -11,14 +11,14 @@ export interface State extends EntityState<User> {
 
 export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
 
-// export const initialState: State = adapter.getInitialState({
-//   // additional entity state properties
-// });
+export const initialState: State = adapter.getInitialState({
+  // additional entity state properties
+});
 
-export const initialState: State = adapter.setAll(
-  [{ id: '123', name: 'Вася' }],
-  adapter.getInitialState()
-);
+// export const initialState: State = adapter.setAll(
+//   [{ id: '123', name: 'Вася' }],
+//   adapter.getInitialState()
+// );
 
 export const reducer = createReducer(
   initialState,
