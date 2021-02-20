@@ -1,15 +1,15 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import * as UserActions from './user.actions';
-import { User } from '@app/models';
+import { Gamer } from '@app/models';
 
 export const usersFeatureKey = 'users';
 
-export interface State extends EntityState<User> {
+export interface State extends EntityState<Gamer> {
   // additional entities state properties
 }
 
-export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
+export const adapter: EntityAdapter<Gamer> = createEntityAdapter<Gamer>();
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties

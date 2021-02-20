@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { User } from '@app/models';
+import { Gamer } from '@app/models';
 import { UserStoreFacade } from '@app/state/user';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { Observable } from 'rxjs';
@@ -43,5 +43,5 @@ export class UsersComponent {
     //       }
     //   });
   }
-  public users$: Observable<User[]> = this.userStateFacade.users$;
+  public users$: Observable<Gamer[]> = this.userStateFacade.users$;
 }

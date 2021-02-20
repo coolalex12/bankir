@@ -11,9 +11,11 @@ import { reducers, metaReducers } from './state';
 import { UsersComponent } from './components/users/users.component';
 import { CommonModule } from '@angular/common';
 import { IndexedDbModule } from './db/indexed-db.module';
+import { GameEffects } from './state/game/game.effects';
+import { GameDetailsComponent } from './components/game-details/game-details.component';
 
 @NgModule({
-  declarations: [AppComponent, UsersComponent],
+  declarations: [AppComponent, UsersComponent, GameDetailsComponent],
   imports: [
     BrowserModule,
     CommonModule,
@@ -25,6 +27,7 @@ import { IndexedDbModule } from './db/indexed-db.module';
       maxAge: 25,
       logOnly: environment.production,
     }) : [],
+    EffectsModule.forFeature([GameEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

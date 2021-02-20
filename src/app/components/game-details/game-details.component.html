@@ -1,0 +1,12 @@
+{{ gameDetails$ | async | json }}
+<div *ngIf="gameDetails$ | async as game">
+  <div *ngFor="let gamer of game.gamers" style="display: flex">
+    <div style="padding: 5px">
+      {{ gamer.user.name }}
+    </div>
+    <div *ngFor="let buy of gamer.buy" style="padding: 5px">
+      {{ buy.nominal }}*{{ buy.count }}
+    </div>
+    <button (click)="addBuy(gamer.user, 200)">+200</button>
+  </div>
+</div>

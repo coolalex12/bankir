@@ -1,41 +1,41 @@
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { User } from '@app/models';
+import { Gamer } from '@app/models';
 
 
 export const loadUsers = createAction(
   '[User/API] Load Users',
-  props<{ users: User[] }>()
+  props<{ users: Gamer[] }>()
 );
 
 export const addUser = createAction(
   '[User/API] Add User',
-  props<{ user: User }>()
+  props<{ user: Gamer }>()
 );
 
 export const upsertUser = createAction(
   '[User/API] Upsert User',
-  props<{ user: User }>()
+  props<{ user: Gamer }>()
 );
 
 export const addUsers = createAction(
   '[User/API] Add Users',
-  props<{ users: User[] }>()
+  props<{ users: Gamer[] }>()
 );
 
 export const upsertUsers = createAction(
   '[User/API] Upsert Users',
-  props<{ users: User[] }>()
+  props<{ users: Gamer[] }>()
 );
 
 export const updateUser = createAction(
   '[User/API] Update User',
-  props<{ user: Update<User> }>()
+  props<{ user: Update<Gamer> }>()
 );
 
 export const updateUsers = createAction(
   '[User/API] Update Users',
-  props<{ users: Update<User>[] }>()
+  props<{ users: Update<Gamer>[] }>()
 );
 
 export const deleteUser = createAction(
