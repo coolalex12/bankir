@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { User } from '@app/models';
 import { UserStoreFacade } from '@app/state/user';
+import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,8 +10,38 @@ import { Observable } from 'rxjs';
   styleUrls: ['./users.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UsersComponent implements OnInit {
-  constructor(private readonly userStateFacade: UserStoreFacade) {}
+export class UsersComponent {
+  constructor(
+    private readonly userStateFacade: UserStoreFacade,
+    private dbService: NgxIndexedDBService
+  ) {
+    // this.dbService
+    //   .add('users', {
+    //     name: `Bruce Wayne`,
+    //     email: `bruce@wayne.com`,
+    //   })
+    //   .subscribe((key) => {
+    //     console.log('key: ', key);
+    //   });
+
+    // this.dbService
+    //   .add('users', {
+    //     name: `Test`,
+    //     email: `test@wayne.com`,
+    //   })
+    //   .subscribe((key) => {
+    //     console.log('key: ', key);
+    //   });
+
+    //     this.dbService.openCursorByIndex('users', 'name', IDBKeyRange.only("Bruce Wayne")).subscribe((evt) => {
+    //       var cursor = (evt.target as IDBOpenDBRequest).result;
+    //       if(cursor) {
+    //           console.log(cursor);
+    //           // cursor.continue();
+    //       } else {
+    //           console.log('Entries all displayed.');
+    //       }
+    //   });
+  }
   public users$: Observable<User[]> = this.userStateFacade.users$;
-  ngOnInit(): void {}
 }

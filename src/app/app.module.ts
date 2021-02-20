@@ -10,6 +10,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers, metaReducers } from './state';
 import { UsersComponent } from './components/users/users.component';
 import { CommonModule } from '@angular/common';
+import { IndexedDbModule } from './db/indexed-db.module';
 
 @NgModule({
   declarations: [AppComponent, UsersComponent],
@@ -17,13 +18,13 @@ import { CommonModule } from '@angular/common';
     BrowserModule,
     CommonModule,
     AppRoutingModule,
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.production,
-    }),
+    IndexedDbModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot(reducers, { metaReducers }),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    !environment.production ? StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }) : [],
   ],
   providers: [],
   bootstrap: [AppComponent],
