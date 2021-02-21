@@ -6,10 +6,12 @@ import * as GameActions from './game.actions';
 export const gameFeatureKey = 'game';
 
 export interface State {
-  gameDetails?: GameDetails;
+  gameDetails: GameDetails;
 }
 
-export const initialState: State = {};
+export const initialState: State = {
+  gameDetails: {} as GameDetails,
+};
 
 export const reducer = createReducer(
   initialState,
@@ -17,8 +19,12 @@ export const reducer = createReducer(
   // on(GameActions.loadGames, (state) => state),
   // on(GameActions.loadGamesSuccess, (state, action) => state),
   // on(GameActions.loadGamesFailure, (state, action) => state),
-  on(GameActions.loadGameDetailsSuccess, (state, { game }) => ({
-    ...state,
-    gameDetails: game,
-  }))
+  on(
+    GameActions.loadGameDetailsSuccess,
+    GameActions.updateGameDetailsSuccess,
+    (state, { game }) => ({
+      ...state,
+      gameDetails: game,
+    })
+  )
 );

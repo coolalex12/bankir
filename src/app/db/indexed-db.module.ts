@@ -4,7 +4,7 @@ import { DB_CHEMA } from './db-shema';
 
 const dbConfig: DBConfig = {
   name: 'MyDb',
-  version: 1,
+  version: 2,
   objectStoresMeta: [
     {
       store: DB_CHEMA.tables.games.tableName,

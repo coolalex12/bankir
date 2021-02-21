@@ -1,12 +1,20 @@
-{{ gameDetails$ | async | json }}
+<!-- {{ gameDetails$ | async | json }} -->
 <div *ngIf="gameDetails$ | async as game">
-  <div *ngFor="let gamer of game.gamers" style="display: flex">
-    <div style="padding: 5px">
-      {{ gamer.user.name }}
+  <div
+    *ngFor="let gamer of game.gamersBuy"
+    style="display: flex; flex-direction: column;"
+    class="gamer-container"
+  >
+    <div style="display: flex">
+      <div style="padding: 5px">
+        {{ gamer.user.name }}
+      </div>
+      <div *ngFor="let buy of gamer.buy" style="padding: 5px">
+        {{ buy.nominal }}*{{ buy.count }}
+      </div>
+      <button (click)="addBuy(gamer.user, 200)">+200</button>
+      <button (click)="addBuy(gamer.user, 400)">+400</button>
     </div>
-    <div *ngFor="let buy of gamer.buy" style="padding: 5px">
-      {{ buy.nominal }}*{{ buy.count }}
-    </div>
-    <button (click)="addBuy(gamer.user, 200)">+200</button>
+    <div>Всего: {{ gamer.totalBuy }}</div>
   </div>
 </div>

@@ -11,7 +11,7 @@ import { Gamer } from '@app/models';
 })
 export class GameStoreFacade {
   constructor(private store: Store, private action$: Actions) {
-    // this.createGame();
+    this.createGame();
     //
   }
   public gameDetails$ = this.store.pipe(select(selectors.selectGameDetails));
@@ -25,10 +25,10 @@ export class GameStoreFacade {
     const game: GameDetails = {
       // id: '100500',
       date: new Date().toLocaleDateString(),
-      gamers: [
+      gamersBuy: [
         {
           user: {
-            id: '1',
+            id: 1,
             name: 'Имя 1',
           },
           buy: [
@@ -44,7 +44,7 @@ export class GameStoreFacade {
         },
         {
           user: {
-            id: '2',
+            id: 2,
             name: 'Имя 2',
           },
           buy: [
@@ -63,11 +63,7 @@ export class GameStoreFacade {
     this.store.dispatch(actions.loadGameDetailsStart({ gameId }));
   }
 
-  public updateGame(game: GameDetails): void {
-    this.store.dispatch(actions.saveGameDetailsStart({ game }));
-  }
-
   public addBuy(gamer: Gamer, nominal: number): void {
-    //TODO
+    this.store.dispatch(actions.addBuyStart({ gamer, nominal }));
   }
 }

@@ -1,49 +1,75 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import * as GameActions from './game.actions';
+import * as GameSelectors from './game.selectors';
 import { GameDbService } from '@app/db';
+import { addBuyToGame } from '@app/utils/game-utils';
+import { Store, select } from '@ngrx/store';
 
 @Injectable()
 export class GameEffects {
-  createGame$ = createEffect(() => {
+  public createGame$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GameActions.createGameDetailsStart),
       switchMap(({ game }) =>
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
         this.dbService.createGame(game).pipe(
           map((id) => {
-            // game.id = id.toString();
             return GameActions.createGameDetailsSuccess({
               game: { ...game, id },
             });
+          }),
+          catchError((error) => {
+            return of(GameActions.createGameDetailsFailure({ error }));
           })
-          // catchError((error) => {
-          //   console.log('error', error);
-          //   return of(GameActions.createGameDetailsFailure({ error }));
-          // })
         )
       )
     );
   });
 
-  loadGame$ = createEffect(() => {
+  public loadGame$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GameActions.loadGameDetailsStart),
       switchMap(({ gameId }) =>
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
         this.dbService.getGame(gameId).pipe(
-          map((game) => GameActions.loadGameDetailsSuccess({ game }))
-          // catchError((error) => {
-          //   console.log('error', error);
-          //   return of(GameActions.createGameDetailsFailure({ error }));
-          // })
+          map((game) => GameActions.loadGameDetailsSuccess({ game })),
+          catchError((error) => {
+            return of(GameActions.loadGameDetailsFailure({ error }));
+          })
         )
       )
     );
   });
 
-  constructor(private actions$: Actions, private dbService: GameDbService) {}
+  public addBuy$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GameActions.addBuyStart),
+      switchMap((action) =>
+        of(action).pipe(
+          withLatestFrom(
+            this.store.pipe(select(GameSelectors.selectGameDetails))
+          )
+        )
+      ),
+      switchMap(([{ gamer, nominal }, game]) => {
+        const gameForSave = addBuyToGame(game, gamer.id, nominal);
+        return this.dbService.updateGame(gameForSave).pipe(
+          map((game) => {
+            return GameActions.updateGameDetailsSuccess({ game: gameForSave });
+          }),
+          catchError((error) => {
+            return of(GameActions.updateGameDetailsFailure({ error }));
+          })
+        );
+      })
+    );
+  });
+
+  constructor(
+    private actions$: Actions,
+    private dbService: GameDbService,
+    private store: Store
+  ) {}
 }

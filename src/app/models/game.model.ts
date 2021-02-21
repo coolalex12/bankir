@@ -4,10 +4,17 @@ import { Gamer } from './user.model';
 export interface GameDetails {
   id?: number;
   date: string;
-  gamers: UserBuy[];
+  gamersBuy: UserBuy[];
 }
-
 interface UserBuy {
   user: Gamer;
   buy: Buy[];
+  /**
+   * сколько на руках
+   */
+  balance?: number;
+  /**
+   * на сколько закупился
+   */
+  totalBuy?: number;
 }

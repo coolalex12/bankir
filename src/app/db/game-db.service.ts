@@ -19,4 +19,8 @@ export class GameDbService {
   public getGame(gameId: number): Observable<GameDetails> {
     return this.dbService.getByKey(this.gamesTableName, gameId);
   }
+
+  public updateGame(game: GameDetails): Observable<GameDetails[]> {
+    return this.dbService.update(this.gamesTableName, game);
+  }
 }
