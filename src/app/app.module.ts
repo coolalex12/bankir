@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { IndexedDbModule } from './db/indexed-db.module';
 import { GameEffects } from './state/game/game.effects';
 import { GameDetailsComponent } from './components/game-details/game-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, UsersComponent, GameDetailsComponent],
@@ -27,6 +28,7 @@ import { GameDetailsComponent } from './components/game-details/game-details.com
       maxAge: 25,
       logOnly: environment.production,
     }) : [],
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
