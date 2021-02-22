@@ -14,6 +14,7 @@ import { IndexedDbModule } from './db/indexed-db.module';
 import { GameEffects } from './state/game/game.effects';
 import { GameDetailsComponent } from './components/game-details/game-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [AppComponent, UsersComponent, GameDetailsComponent],
@@ -29,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       logOnly: environment.production,
     }) : [],
     BrowserAnimationsModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
