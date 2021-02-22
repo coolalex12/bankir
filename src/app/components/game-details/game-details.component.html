@@ -2,10 +2,10 @@
 <div *ngIf="gameDetails$ | async as game">
   <div
     *ngFor="let gamer of game.gamersBuy"
-    style="display: flex; flex-direction: column;"
+    fxLayout="column"
     class="gamer-container"
   >
-    <div style="display: flex">
+    <div fxLayout="row">
       <div style="padding: 5px">
         {{ gamer.user.name }}
       </div>
