@@ -4,63 +4,42 @@ import * as actions from './game.actions';
 import * as selectors from './game.selectors';
 import { GameDetails } from '../../models/game.model';
 import { Actions, ofType } from '@ngrx/effects';
-import { Gamer } from '@app/models';
+import { Gamer, SelectableGamer } from '@app/models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameStoreFacade {
-  constructor(private store: Store, private action$: Actions) {
-    this.createGame();
-    //
-  }
+  constructor(private store: Store, private action$: Actions) {}
   public gameDetails$ = this.store.pipe(select(selectors.selectGameDetails));
+
+  public games$ = this.store.pipe(select(selectors.selectGames));
+
+  public gamersForNewGame$ = this.store.pipe(
+    select(selectors.selectGamersForNewGame)
+  );
 
   public loadGameSuccess$ = this.action$.pipe(
     ofType(actions.loadGameDetailsSuccess)
   );
 
-  public createGame(): void {
-    // debug!!
-    const game: GameDetails = {
-      // id: '100500',
-      date: new Date().toLocaleDateString(),
-      gamersBuy: [
-        {
-          user: {
-            id: 1,
-            name: 'Имя 1',
-          },
-          buy: [
-            {
-              nominal: 200,
-              count: 3,
-            },
-            {
-              nominal: 300,
-              count: 1,
-            },
-          ],
-        },
-        {
-          user: {
-            id: 2,
-            name: 'Имя 2',
-          },
-          buy: [
-            {
-              nominal: 200,
-              count: 2,
-            },
-          ],
-        },
-      ],
-    };
+  public loadGamesSuccess$ = this.action$.pipe(
+    ofType(actions.loadGamesSuccess)
+  );
+
+  public createGame(game: GameDetails): void {
     this.store.dispatch(actions.createGameDetailsStart({ game }));
   }
 
   public loadGame(gameId: number): void {
     this.store.dispatch(actions.loadGameDetailsStart({ gameId }));
+  }
+
+  public loadGames(): void {
+    this.store.dispatch(actions.loadGamesStart());
+  }
+  public loadGamersForNewGame(): void {
+    this.store.dispatch(actions.loadGamersForNewGameStart());
   }
 
   public addBuy(gamer: Gamer, nominal: number): void {

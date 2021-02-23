@@ -24,6 +24,8 @@
     "@angular/platform-browser": "~11.1.2",
     "@angular/platform-browser-dynamic": "~11.1.2",
     "@angular/router": "~11.1.2",
+    "@ngneat/reactive-forms": "^1.7.0",
+    "@ngneat/until-destroy": "^8.0.3",
     "@ngrx/effects": "^11.0.0",
     "@ngrx/entity": "^11.0.0",
     "@ngrx/store": "^11.0.0",

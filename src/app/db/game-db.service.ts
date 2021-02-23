@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { GameDetails } from '@app/models';
+import { GameDetails, Gamer } from '@app/models';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { DB_CHEMA } from './db-shema';
 
 @Injectable({
@@ -20,7 +21,31 @@ export class GameDbService {
     return this.dbService.getByKey(this.gamesTableName, gameId);
   }
 
+  public getGames(): Observable<GameDetails[]> {
+    return this.dbService.getAll(this.gamesTableName).pipe(map(this.sortGames));
+  }
+
   public updateGame(game: GameDetails): Observable<GameDetails[]> {
     return this.dbService.update(this.gamesTableName, game);
+  }
+
+  public getGamers(): Observable<Gamer[]> {
+    // TODO
+    const gamers = [
+      {
+        id: 1,
+        name: 'Игрок 1',
+      },
+      {
+        id: 2,
+        name: 'Игрок 2',
+      },
+    ];
+    return of(gamers);
+  }
+
+  private sortGames(games: GameDetails[]): GameDetails[] {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return games.sort((a, b) => b.id! - a.id!);
   }
 }

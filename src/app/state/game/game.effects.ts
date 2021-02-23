@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
+import {
+  catchError,
+  map,
+  switchMap,
+  tap,
+  withLatestFrom,
+} from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import * as GameActions from './game.actions';
@@ -8,6 +14,7 @@ import * as GameSelectors from './game.selectors';
 import { GameDbService } from '@app/db';
 import { addBuyToGame } from '@app/utils/game-utils';
 import { Store, select } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class GameEffects {
@@ -28,6 +35,18 @@ export class GameEffects {
       )
     );
   });
+
+  public redirectToNewGame$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(GameActions.createGameDetailsSuccess),
+        tap(({ game }) => {
+          this.router.navigate(['game', game.id], { replaceUrl: true });
+        })
+      );
+    },
+    { dispatch: false }
+  );
 
   public loadGame$ = createEffect(() => {
     return this.actions$.pipe(
@@ -67,9 +86,46 @@ export class GameEffects {
     );
   });
 
+  public loadGames$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GameActions.loadGamesStart),
+      switchMap(() =>
+        this.dbService.getGames().pipe(
+          map((games) => GameActions.loadGamesSuccess({ games })),
+          catchError((error) => {
+            return of(GameActions.loadGamesFailure({ error }));
+          })
+        )
+      )
+    );
+  });
+
+  public loadGamersForNewGame$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GameActions.loadGamersForNewGameStart),
+      switchMap(() =>
+        this.dbService.getGamers().pipe(
+          map((gamers) => {
+            const selectableGamers = gamers.map((item) => ({
+              ...item,
+              selected: true,
+            }));
+            return GameActions.loadGamersForNewGameSuccess({
+              gamers: selectableGamers,
+            });
+          }),
+          catchError((error) => {
+            return of(GameActions.loadGamersForNewGameFailure({ error }));
+          })
+        )
+      )
+    );
+  });
+
   constructor(
     private actions$: Actions,
     private dbService: GameDbService,
-    private store: Store
+    private store: Store,
+    private router: Router
   ) {}
 }

@@ -1,1 +1,3 @@
-{{ users$ | async | json }}
+<mat-checkbox *ngFor="let user of users$ | async as list">
+  {{ user.name }}
+</mat-checkbox>

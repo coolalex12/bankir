@@ -1,0 +1,4 @@
+<app-games-list [games]="games$ | async"></app-games-list>
+<button mat-fab color="warn" class="floating-action-btn" [routerLink]="['/game/create']" routerLinkActive="router-link-active" >
+  <mat-icon>add</mat-icon>
+</button>

@@ -1,0 +1,9 @@
+<mat-nav-list>
+  <a
+    mat-list-item
+    *ngFor="let game of games"
+    [routerLink]="['/game/', game.id]"
+  >
+    {{ game.id }} {{ game.date }}</a
+  >
+</mat-nav-list>

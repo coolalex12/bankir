@@ -7,10 +7,6 @@ import * as selectors from './user.selectors';
   providedIn: 'root',
 })
 export class UserStoreFacade {
-  constructor(private store: Store) {
-    // debug!!
-    this.store.dispatch(loadUsers({ users: [{ id: 23, name: 'Вася' }] }));
-    //
-  }
+  constructor(private store: Store) {}
   public users$ = this.store.pipe(select(selectors.selectAllUsers));
 }

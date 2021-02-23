@@ -9,3 +9,13 @@ export const selectGameDetails = createSelector(
   selectGameState,
   (state) => state.gameDetails
 );
+
+export const selectGames = createSelector(
+  selectGameState,
+  (state) => state.gamesList
+);
+
+export const selectGamersForNewGame = createSelector(
+  selectGameState,
+  (state) => state.gamersForNewGame
+);
