@@ -12,9 +12,10 @@ import { of } from 'rxjs';
 import * as GameActions from './game.actions';
 import * as GameSelectors from './game.selectors';
 import { GameDbService } from '@app/db';
-import { addBuyToGame } from '@app/utils/game-utils';
+import { addBuyToGame, saveGamerBalance } from '@app/utils/game-utils';
 import { Store, select } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { GameDetails } from '@app/models';
 
 @Injectable()
 export class GameEffects {
@@ -73,7 +74,33 @@ export class GameEffects {
         )
       ),
       switchMap(([{ gamer, nominal }, game]) => {
-        const gameForSave = addBuyToGame(game, gamer.id, nominal);
+        const clonedGame: GameDetails = JSON.parse(JSON.stringify(game));
+        const gameForSave = addBuyToGame(clonedGame, gamer.id, nominal);
+        return this.dbService.updateGame(gameForSave).pipe(
+          map((game) => {
+            return GameActions.updateGameDetailsSuccess({ game: gameForSave });
+          }),
+          catchError((error) => {
+            return of(GameActions.updateGameDetailsFailure({ error }));
+          })
+        );
+      })
+    );
+  });
+
+  public saveGamerBalance$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GameActions.saveGamerBalanceStart),
+      switchMap((action) =>
+        of(action).pipe(
+          withLatestFrom(
+            this.store.pipe(select(GameSelectors.selectGameDetails))
+          )
+        )
+      ),
+      switchMap(([{ gamer, balance }, game]) => {
+        const clonedGame: GameDetails = JSON.parse(JSON.stringify(game));
+        const gameForSave = saveGamerBalance(clonedGame, gamer.id, balance);
         return this.dbService.updateGame(gameForSave).pipe(
           map((game) => {
             return GameActions.updateGameDetailsSuccess({ game: gameForSave });

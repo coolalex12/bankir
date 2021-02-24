@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,7 +9,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, metaReducers } from './state';
 import { UsersComponent } from './components/users/users.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { IndexedDbModule } from './db/indexed-db.module';
 import { GameEffects } from './state/game/game.effects';
 import { GameDetailsComponent } from './components/game-details/game-details.component';
@@ -20,9 +20,12 @@ import { GamesListComponent } from './components/games-list/games-list.component
 import { MaterialModule } from './material.module';
 import { CreateGameComponent } from './components/create-game/create-game.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BalanceEditorDialogComponent } from './components/balance-editor-dialog/balance-editor-dialog.component';
+import localeRu from '@angular/common/locales/ru';
 
+registerLocaleData(localeRu);
 @NgModule({
-  declarations: [AppComponent, UsersComponent, GameDetailsComponent, HomeComponent, GamesListComponent, CreateGameComponent],
+  declarations: [AppComponent, UsersComponent, GameDetailsComponent, HomeComponent, GamesListComponent, CreateGameComponent, BalanceEditorDialogComponent],
   imports: [
     BrowserModule,
     CommonModule,
@@ -40,7 +43,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

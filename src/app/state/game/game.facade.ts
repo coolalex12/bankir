@@ -45,4 +45,8 @@ export class GameStoreFacade {
   public addBuy(gamer: Gamer, nominal: number): void {
     this.store.dispatch(actions.addBuyStart({ gamer, nominal }));
   }
+
+  public saveGamerBalance(gamer: Gamer, balance: number): void {
+    this.store.dispatch(actions.saveGamerBalanceStart({ gamer, balance }));
+  }
 }

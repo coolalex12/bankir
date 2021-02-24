@@ -71,3 +71,8 @@ export const loadGamersForNewGameFailure = createAction(
   '[Game] Load Gamers For New Game Failure',
   props<{ error: any }>()
 );
+
+export const saveGamerBalanceStart = createAction(
+  '[Game] Save Gamer Balance Start',
+  props<{ gamer: Gamer; balance: number }>()
+);

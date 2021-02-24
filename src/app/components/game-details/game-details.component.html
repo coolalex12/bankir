@@ -5,16 +5,43 @@
     fxLayout="column"
     class="gamer-container"
   >
-    <div fxLayout="row">
-      <div style="padding: 5px">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <span style="padding: 5px">
         {{ gamer.user.name }}
-      </div>
+      </span>
       <div *ngFor="let buy of gamer.buy" style="padding: 5px">
         {{ buy.nominal }}*{{ buy.count }}
       </div>
-      <button (click)="addBuy(gamer.user, 200)">+200</button>
-      <button (click)="addBuy(gamer.user, 400)">+400</button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addBuy(gamer.user, 200)"
+      >
+        +200
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addBuy(gamer.user, 100)"
+      >
+        +100
+      </button>
     </div>
-    <div>Всего: {{ gamer.totalBuy }}</div>
+
+    <div fxLayout="column">
+      <div>Всего закуп: {{ gamer.totalBuy | number }}</div>
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <mat-label>Остаток: {{ gamer.balance | number }}</mat-label>
+
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="editBalanceBtnClick(gamer)"
+        >
+          <mat-icon>create</mat-icon>
+        </button>
+      </div>
+      <div>Итог: {{ gamer.totalResult | number }}</div>
+    </div>
   </div>
 </div>

@@ -5,8 +5,9 @@ export interface GameDetails {
   id?: number;
   date: string;
   gamersBuy: UserBuy[];
+  totalBuy?: number;
 }
-interface UserBuy {
+export interface UserBuy {
   user: Gamer;
   buy: Buy[];
   /**
@@ -17,4 +18,5 @@ interface UserBuy {
    * на сколько закупился
    */
   totalBuy?: number;
+  totalResult?: number;
 }
