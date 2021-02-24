@@ -22,7 +22,10 @@ export const addBuyToGame = (
       acc += current.count * current.nominal;
       return acc;
     }, 0);
-    gamerBuy.totalResult = (gamerBuy.balance ?? 0) - gamerBuy.totalBuy;
+
+    if (typeof gamerBuy.balance === 'number') {
+      gamerBuy.totalResult = gamerBuy.balance - gamerBuy.totalBuy;
+    }
   }
 
   calculateGameResults(game);
