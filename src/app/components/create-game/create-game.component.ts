@@ -68,6 +68,12 @@ export class CreateGameComponent implements OnInit {
       })),
     };
 
+    newGame.totalBuy = newGame.gamersBuy.reduce((acc, current) => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      acc += current.totalBuy!;
+      return acc;
+    }, 0);
+
     return newGame;
   }
 }

@@ -17,15 +17,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeComponent } from './components/home/home.component';
 import { GamesListComponent } from './components/games-list/games-list.component';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './material/material.module';
 import { CreateGameComponent } from './components/create-game/create-game.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BalanceEditorDialogComponent } from './components/balance-editor-dialog/balance-editor-dialog.component';
 import localeRu from '@angular/common/locales/ru';
+import { GameResultsComponent } from './components/game-results/game-results.component';
 
 registerLocaleData(localeRu);
 @NgModule({
-  declarations: [AppComponent, UsersComponent, GameDetailsComponent, HomeComponent, GamesListComponent, CreateGameComponent, BalanceEditorDialogComponent],
+  declarations: [AppComponent, UsersComponent, GameDetailsComponent, HomeComponent, GamesListComponent, CreateGameComponent, BalanceEditorDialogComponent, GameResultsComponent],
   imports: [
     BrowserModule,
     CommonModule,

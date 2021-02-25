@@ -1,0 +1,7 @@
+<div *ngIf="game" fxLayout="column">
+  <h2>Результаты игры</h2>
+  <span>Размер банка: {{ game.totalBuy | number }}</span>
+  <span>Проигрыш: {{ game.lose | number }}</span>
+  <span>Выигрыш: {{ game.win | number }}</span>
+  <span>Итог: {{ game.totalResult | number }}</span>
+</div>

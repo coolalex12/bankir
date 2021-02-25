@@ -48,10 +48,23 @@ export const saveGamerBalance = (
 };
 
 export const calculateGameResults = (game: GameDetails): GameDetails => {
+  game.win = 0;
+  game.lose = 0;
   game.totalBuy = game.gamersBuy.reduce((acc, current) => {
     acc += current.totalBuy ?? 0;
+    if (typeof current.totalResult === 'number' && current.totalResult > 0) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      game.win! += current.totalResult;
+    } else if (
+      typeof current.totalResult === 'number' &&
+      current.totalResult < 0
+    ) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      game.lose! += current.totalResult;
+    }
     return acc;
   }, 0);
 
+  game.totalResult = game.win + game.lose;
   return game;
 };

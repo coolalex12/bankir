@@ -6,6 +6,9 @@ export interface GameDetails {
   date: string;
   gamersBuy: UserBuy[];
   totalBuy?: number;
+  totalResult?: number;
+  lose?: number;
+  win?: number;
 }
 export interface UserBuy {
   user: Gamer;
