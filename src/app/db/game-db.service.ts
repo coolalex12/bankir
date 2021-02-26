@@ -34,11 +34,31 @@ export class GameDbService {
     const gamers = [
       {
         id: 1,
-        name: 'Игрок 1',
+        name: 'Деня',
       },
       {
         id: 2,
-        name: 'Игрок 2',
+        name: 'Таня',
+      },
+      {
+        id: 3,
+        name: 'Жека',
+      },
+      {
+        id: 4,
+        name: 'Фил',
+      },
+      {
+        id: 5,
+        name: 'Лёха',
+      },
+      {
+        id: 6,
+        name: 'Саня Т.',
+      },
+      {
+        id: 7,
+        name: 'Влад',
       },
     ];
     return of(gamers);

@@ -36,6 +36,11 @@ export const addBuyStart = createAction(
   props<{ gamer: Gamer; nominal: number }>()
 );
 
+export const removeBuyStart = createAction(
+  '[Game] Remove Buy Start',
+  props<{ gamer: Gamer; nominal: number }>()
+);
+
 export const updateGameDetailsSuccess = createAction(
   '[Game] Save Game Details Success',
   props<{ game: GameDetails }>()

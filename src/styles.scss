@@ -17,5 +17,21 @@ body {
 }
 
 .mat-typography {
-  font-size: 16px;
+  font-size: 18px;
+}
+
+.mat-raised-button {
+  font-size: 18px;
+}
+
+.mat-checkbox {
+  .mat-checkbox-label {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .mat-checkbox-inner-container {
+    height: 20px;
+    width: 20px;
+  }
 }

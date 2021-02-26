@@ -1,5 +1,15 @@
-:host{
-  .gamer-container{
+:host {
+  padding: 0 10px;
+  display: block;
+
+  .gamer-container {
     border: 1px solid tomato;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 10px;
+  }
+
+  .gamer-name {
+    font-weight: bold;
   }
 }

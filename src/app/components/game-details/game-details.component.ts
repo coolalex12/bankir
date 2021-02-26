@@ -27,9 +27,13 @@ export class GameDetailsComponent {
     this.gameStoreFacade.addBuy(gamer, nominal);
   }
 
+  public removeBuy(gamer: Gamer, nominal: number): void {
+    this.gameStoreFacade.removeBuy(gamer, nominal);
+  }
+
   public editBalanceBtnClick(userBuy: UserBuy): void {
     const dialogRef = this.dialog.open(BalanceEditorDialogComponent, {
-      width: '250px',
+      width: '280px',
       data: { balance: userBuy.balance },
     });
 

@@ -1,4 +1,4 @@
-<mat-nav-list>
+<mat-nav-list *ngIf="games && games.length; else empty">
   <a
     mat-list-item
     *ngFor="let game of games"
@@ -7,3 +7,9 @@
     {{ game.id }}) от {{ game.date }}</a
   >
 </mat-nav-list>
+
+<ng-template #empty>
+  <div fxLayout="row" fxLayoutAlign="center center" style="height: 100%">
+    <span>Список игр пуст</span>
+  </div>
+</ng-template>

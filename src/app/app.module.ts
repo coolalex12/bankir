@@ -26,7 +26,16 @@ import { GameResultsComponent } from './components/game-results/game-results.com
 
 registerLocaleData(localeRu);
 @NgModule({
-  declarations: [AppComponent, UsersComponent, GameDetailsComponent, HomeComponent, GamesListComponent, CreateGameComponent, BalanceEditorDialogComponent, GameResultsComponent],
+  declarations: [
+    AppComponent,
+    UsersComponent,
+    GameDetailsComponent,
+    HomeComponent,
+    GamesListComponent,
+    CreateGameComponent,
+    BalanceEditorDialogComponent,
+    GameResultsComponent,
+  ],
   imports: [
     BrowserModule,
     CommonModule,
@@ -34,17 +43,19 @@ registerLocaleData(localeRu);
     IndexedDbModule,
     EffectsModule.forRoot([GameEffects]),
     StoreModule.forRoot(reducers, { metaReducers }),
-    !environment.production ? StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.production,
-    }) : [],
+    !environment.production
+      ? StoreDevtoolsModule.instrument({
+          maxAge: 25,
+          logOnly: environment.production,
+        })
+      : [],
     BrowserAnimationsModule,
     FlexLayoutModule,
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'ru' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

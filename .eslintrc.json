@@ -11,5 +11,21 @@
     "project": ["tsconfig.app.json", "tsconfig.spec.json", "e2e/tsconfig.json"]
   },
   "plugins": ["@typescript-eslint"],
-  "rules": {}
+  "rules": {
+    "no-console": "error",
+    "max-len": [
+      "error",
+      {
+        "code": 140,
+        "comments": 140,
+        "ignoreStrings": true,
+        "ignorePattern": "// eslint-disable",
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
+      }
+    ]
+  }
 }
