@@ -24,7 +24,7 @@
         <div fxLayout="column">
           <span>Всего закуп: {{ gamer.totalBuy | number }}</span>
           <div fxLayout="row" fxLayoutAlign="start center">
-            <mat-label>Остаток: {{ gamer.balance | number }}</mat-label>
+            <mat-label>Остаток на руках: {{ gamer.balance | number }}</mat-label>
 
             <button
               mat-icon-button
@@ -34,7 +34,7 @@
               <mat-icon>create</mat-icon>
             </button>
           </div>
-          <div>Итог: {{ gamer.totalResult | number }}</div>
+          <div>Итог игры: {{ gamer.totalResult | number }}</div>
         </div>
       </div>
 
