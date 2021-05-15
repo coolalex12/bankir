@@ -53,4 +53,8 @@ export class GameStoreFacade {
   public saveGamerBalance(gamer: Gamer, balance: number): void {
     this.store.dispatch(actions.saveGamerBalanceStart({ gamer, balance }));
   }
+
+  public calculateTransactions(): void {
+    this.store.dispatch(actions.calculateTransactionsStart());
+  }
 }

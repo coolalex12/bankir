@@ -24,7 +24,7 @@
         <div fxLayout="column">
           <span>Всего закуп: {{ gamer.totalBuy | number }}</span>
           <div fxLayout="row" fxLayoutAlign="start center">
-            <mat-label>Остаток на руках: {{ gamer.balance | number }}</mat-label>
+            <mat-label>На руках: {{ gamer.balance | number }}</mat-label>
 
             <button
               mat-icon-button
@@ -81,4 +81,19 @@
   </div>
 
   <app-game-results [game]="game"></app-game-results>
+  <button
+    mat-raised-button
+    color="primary"
+    class="buy-btn"
+    (click)="calcTransactions()"
+  >
+    Рассчитать переводы
+  </button>
+
+  <div *ngIf="game.transactions">
+    <div *ngFor="let transaction of game.transactions">
+      {{ transaction.sender.name }} {{ transaction.value }}
+      {{ transaction.recipient.name }}
+    </div>
+  </div>
 </div>

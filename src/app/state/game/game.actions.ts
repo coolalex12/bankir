@@ -1,4 +1,9 @@
-import { GameDetails, Gamer, SelectableGamer } from '@app/models';
+import {
+  GameDetails,
+  Gamer,
+  GameTransaction,
+  SelectableGamer,
+} from '@app/models';
 import { createAction, props } from '@ngrx/store';
 
 export const loadGameDetailsStart = createAction(
@@ -80,4 +85,18 @@ export const loadGamersForNewGameFailure = createAction(
 export const saveGamerBalanceStart = createAction(
   '[Game] Save Gamer Balance Start',
   props<{ gamer: Gamer; balance: number }>()
+);
+
+export const calculateTransactionsStart = createAction(
+  '[Game] Calculate Transactions Start'
+);
+
+export const calculateTransactionsSuccess = createAction(
+  '[Game] Calculate Transactions Success',
+  props<{ transactions: GameTransaction[] }>()
+);
+
+export const calculateTransactionsFailure = createAction(
+  '[Game] Calculate Transactions Failure',
+  props<{ error: any }>()
 );

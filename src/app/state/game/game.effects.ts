@@ -20,6 +20,8 @@ import {
 import { Store, select } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { GameDetails } from '@app/models';
+import { TransactionsCalculatorService } from '../../utils/transactions-calculator.service';
+import { mapTo } from 'rxjs/operators';
 
 @Injectable()
 export class GameEffects {
@@ -156,6 +158,37 @@ export class GameEffects {
     );
   });
 
+  public calculateTransactions$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GameActions.calculateTransactionsStart),
+      switchMap((action) =>
+        of(action).pipe(
+          withLatestFrom(
+            this.store.pipe(select(GameSelectors.selectGameDetails))
+          )
+        )
+      ),
+      switchMap(([_, game]) => {
+        const clonedGame: GameDetails = JSON.parse(JSON.stringify(game));
+        return this.transactionsCalculator.calculate(clonedGame).pipe(
+          switchMap((transactions) => {
+            const clonedGame: GameDetails = JSON.parse(JSON.stringify(game));
+            clonedGame.transactions = transactions;
+            return this.dbService
+              .updateGame(clonedGame)
+              .pipe(mapTo(clonedGame));
+          }),
+          map((game) => {
+            return GameActions.updateGameDetailsSuccess({ game });
+          }),
+          catchError((error) => {
+            return of(GameActions.updateGameDetailsFailure({ error }));
+          })
+        );
+      })
+    );
+  });
+
   public loadGamersForNewGame$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GameActions.loadGamersForNewGameStart),
@@ -178,10 +211,22 @@ export class GameEffects {
     );
   });
 
+  // TODO сделать обработку ошибки
+  public error$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(GameActions.updateGameDetailsFailure),
+        map(({ error }) => alert(error))
+      );
+    },
+    { dispatch: false }
+  );
+
   constructor(
     private actions$: Actions,
     private dbService: GameDbService,
     private store: Store,
-    private router: Router
+    private router: Router,
+    private transactionsCalculator: TransactionsCalculatorService
   ) {}
 }

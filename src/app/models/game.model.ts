@@ -1,5 +1,6 @@
 import { Buy } from './buy.model';
 import { Gamer } from './user.model';
+import { GameTransaction } from './transaction.model';
 
 export interface GameDetails {
   id?: number;
@@ -9,6 +10,7 @@ export interface GameDetails {
   totalResult?: number;
   lose?: number;
   win?: number;
+  transactions?: GameTransaction[];
 }
 export interface UserBuy {
   user: Gamer;
