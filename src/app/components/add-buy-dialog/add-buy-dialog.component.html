@@ -1,0 +1,45 @@
+<div mat-dialog-title>Закуп: {{ data.gamerName }}</div>
+<div mat-dialog-content>
+  <div
+    fxLayout="row"
+    fxLayoutGap="20px"
+    fxLayoutAlign="start center"
+    class="content"
+  >
+    <div fxLayout="column" fxLayoutGap="15px">
+      <button
+        mat-raised-button
+        color="primary"
+        class="buy-btn"
+        (click)="incrementValue(+100)"
+      >
+        +{{ 100 }}
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="buy-btn"
+        (click)="incrementValue(-100)"
+      >
+        -{{ 100 }}
+      </button>
+    </div>
+
+    <mat-form-field>
+      <input matInput type="number" autocomplete="off" [(ngModel)]="value" />
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+  <button
+    mat-raised-button
+    color="warn"
+    [mat-dialog-close]="value"
+    [disabled]="value == 0"
+  >
+    Применить
+  </button>
+  <button mat-raised-button (click)="onCancelClick()" cdkFocusInitial>
+    Отмена
+  </button>
+</div>

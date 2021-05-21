@@ -4,77 +4,49 @@
     *ngFor="let gamer of game.gamersBuy"
     fxLayout="column"
     class="gamer-container"
+    [ngClass]="gamerClassName(gamer)"
   >
-    <div fxLayout="row">
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxLayout="row">
+        <button
+          mat-raised-button
+          color="primary"
+          class="buy-btn"
+          (click)="addBuyBtnClick(gamer.user)"
+        >
+          +/-
+        </button>
+      </div>
+
       <div
         fxLayout="column"
         fxFlex
         fxLayoutAlign="start start"
         fxLayoutGap="5px"
       >
-        <span class="gamer-name">
-          {{ gamer.user.name }}
-        </span>
-        <div fxLayout="row" fxLayoutGap="5px">
+        <div fxLayout="row wrap" fxLayoutGap="5px">
+          <span class="gamer-name">
+            {{ gamer.user.name }}: {{ gamer.totalBuy | number }}
+          </span>
           <span *ngFor="let buy of gamer.buy">
             {{ buy.nominal }}*{{ buy.count }}
           </span>
         </div>
 
-        <div fxLayout="column">
-          <span>Всего закуп: {{ gamer.totalBuy | number }}</span>
+        <div fxLayout="row" fxLayoutAlign="start center">
           <div fxLayout="row" fxLayoutAlign="start center">
             <mat-label>На руках: {{ gamer.balance | number }}</mat-label>
-
             <button
               mat-icon-button
               color="primary"
+              class="btn-edit"
               (click)="editBalanceBtnClick(gamer)"
             >
               <mat-icon>create</mat-icon>
             </button>
           </div>
-          <div>Итог игры: {{ gamer.totalResult | number }}</div>
-        </div>
-      </div>
 
-      <div fxLayout="row" fxLayoutGap="10px">
-        <div fxLayout="column" fxLayoutGap="10px">
-          <button
-            mat-raised-button
-            color="primary"
-            class="buy-btn"
-            (click)="addBuy(gamer.user, 200)"
-          >
-            +200
-          </button>
-          <button
-            mat-raised-button
-            color="primary"
-            class="buy-btn"
-            (click)="addBuy(gamer.user, 100)"
-          >
-            +100
-          </button>
-        </div>
-
-        <div fxLayout="column" fxLayoutGap="10px">
-          <button
-            mat-raised-button
-            color="primary"
-            class="buy-btn"
-            (click)="removeBuy(gamer.user, 200)"
-          >
-            -200
-          </button>
-          <button
-            mat-raised-button
-            color="primary"
-            class="buy-btn"
-            (click)="removeBuy(gamer.user, 100)"
-          >
-            -100
-          </button>
+          <div class="total">Итог: {{ gamer.totalResult | number }}</div>
         </div>
       </div>
     </div>

@@ -2,14 +2,32 @@
   padding: 0 10px;
   display: block;
 
+  .btn-edit {
+    height: 30px;
+    line-height: 30px;
+  }
+
   .gamer-container {
-    border: 1px solid tomato;
+    border-bottom: 1px solid rgb(129, 129, 129);
     margin-left: -10px;
     margin-right: -10px;
-    padding: 10px;
+    padding: 2px;
+
+    &.win {
+      background-color: #c7f7cb;
+    }
+
+    &.lose {
+      background-color: #f98989;
+    }
+  }
+
+  .total {
+    font-weight: bold;
   }
 
   .gamer-name {
     font-weight: bold;
+    padding-right: 10px;
   }
 }

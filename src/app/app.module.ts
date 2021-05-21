@@ -23,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BalanceEditorDialogComponent } from './components/balance-editor-dialog/balance-editor-dialog.component';
 import localeRu from '@angular/common/locales/ru';
 import { GameResultsComponent } from './components/game-results/game-results.component';
+import { AddBuyDialogComponent } from './components/add-buy-dialog/add-buy-dialog.component';
 
 registerLocaleData(localeRu);
 @NgModule({
@@ -35,6 +36,7 @@ registerLocaleData(localeRu);
     CreateGameComponent,
     BalanceEditorDialogComponent,
     GameResultsComponent,
+    AddBuyDialogComponent,
   ],
   imports: [
     BrowserModule,
