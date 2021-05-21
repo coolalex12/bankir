@@ -40,6 +40,10 @@ export class GameDetailsComponent {
     };
   }
 
+  public isWinner(gamer: UserBuy): boolean {
+    return Boolean(gamer.totalResult) && (gamer.totalResult as number) > 0;
+  }
+
   public calcTransactions(): void {
     this.gameStoreFacade.calculateTransactions();
   }

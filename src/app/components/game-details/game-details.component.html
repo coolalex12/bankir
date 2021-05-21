@@ -46,7 +46,10 @@
             </button>
           </div>
 
-          <div class="total">Итог: {{ gamer.totalResult | number }}</div>
+          <div class="total">
+            Итог: <ng-container *ngIf="isWinner(gamer)">+</ng-container>
+            {{ gamer.totalResult | number }}
+          </div>
         </div>
       </div>
     </div>
