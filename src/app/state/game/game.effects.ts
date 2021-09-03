@@ -144,20 +144,6 @@ export class GameEffects {
     );
   });
 
-  public loadGames$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(GameActions.loadGamesStart),
-      switchMap(() =>
-        this.dbService.getGames().pipe(
-          map((games) => GameActions.loadGamesSuccess({ games })),
-          catchError((error) => {
-            return of(GameActions.loadGamesFailure({ error }));
-          })
-        )
-      )
-    );
-  });
-
   public calculateTransactions$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GameActions.calculateTransactionsStart),

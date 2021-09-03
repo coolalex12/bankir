@@ -4,15 +4,15 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot,
 } from '@angular/router';
-import { GameStoreFacade } from '@app/state/game';
 import { Observable, of } from 'rxjs';
 import { mapTo, take } from 'rxjs/operators';
+import { GamesListStoreFacadeService } from '../store';
 
 @Injectable({
   providedIn: 'root',
 })
-export class HomeResolver implements Resolve<boolean> {
-  constructor(private readonly gameStoreFacade: GameStoreFacade) {}
+export class GamesListResolver implements Resolve<boolean> {
+  constructor(private readonly gameStoreFacade: GamesListStoreFacadeService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,

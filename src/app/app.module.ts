@@ -15,8 +15,6 @@ import { GameEffects } from './state/game/game.effects';
 import { GameDetailsComponent } from './components/game-details/game-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HomeComponent } from './components/home/home.component';
-import { GamesListComponent } from './components/games-list/games-list.component';
 import { MaterialModule } from './material/material.module';
 import { CreateGameComponent } from './components/create-game/create-game.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,8 +29,6 @@ registerLocaleData(localeRu);
     AppComponent,
     UsersComponent,
     GameDetailsComponent,
-    HomeComponent,
-    GamesListComponent,
     CreateGameComponent,
     BalanceEditorDialogComponent,
     GameResultsComponent,
