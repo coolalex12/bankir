@@ -1,6 +1,5 @@
-import { state } from '@angular/animations';
-import { GameDetails, Gamer, SelectableGamer } from '@app/models';
-import { Action, createReducer, on } from '@ngrx/store';
+import { GameDetails, SelectableGamer } from '@app/models';
+import { createReducer, on } from '@ngrx/store';
 import * as GameActions from './game.actions';
 
 export const gameFeatureKey = 'game';

@@ -4,7 +4,7 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot,
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { mapTo, take } from 'rxjs/operators';
 import { GamesListStoreFacadeService } from '../store';
 
