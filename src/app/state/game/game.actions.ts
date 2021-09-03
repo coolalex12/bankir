@@ -56,18 +56,6 @@ export const updateGameDetailsFailure = createAction(
   props<{ error: any }>()
 );
 
-export const loadGamesStart = createAction('[Game] Load Games Start');
-
-export const loadGamesSuccess = createAction(
-  '[Game] Load Games Success',
-  props<{ games: GameDetails[] }>()
-);
-
-export const loadGamesFailure = createAction(
-  '[Game] Load Games Failure',
-  props<{ error: any }>()
-);
-
 export const loadGamersForNewGameStart = createAction(
   '[Game] Load Gamers For New Game Start'
 );

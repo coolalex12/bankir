@@ -13,8 +13,6 @@ export class GameStoreFacade {
   constructor(private store: Store, private action$: Actions) {}
   public gameDetails$ = this.store.pipe(select(selectors.selectGameDetails));
 
-  public games$ = this.store.pipe(select(selectors.selectGames));
-
   public gamersForNewGame$ = this.store.pipe(
     select(selectors.selectGamersForNewGame)
   );
@@ -28,10 +26,6 @@ export class GameStoreFacade {
     ofType(actions.loadGameDetailsSuccess)
   );
 
-  public loadGamesSuccess$ = this.action$.pipe(
-    ofType(actions.loadGamesSuccess)
-  );
-
   public createGame(game: GameDetails): void {
     this.store.dispatch(actions.createGameDetailsStart({ game }));
   }
@@ -40,9 +34,6 @@ export class GameStoreFacade {
     this.store.dispatch(actions.loadGameDetailsStart({ gameId }));
   }
 
-  public loadGames(): void {
-    this.store.dispatch(actions.loadGamesStart());
-  }
   public loadGamersForNewGame(): void {
     this.store.dispatch(actions.loadGamersForNewGameStart());
   }
