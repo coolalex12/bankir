@@ -4,7 +4,7 @@ import * as actions from './game.actions';
 import * as selectors from './game.selectors';
 import { GameDetails } from '../../models/game.model';
 import { Actions, ofType } from '@ngrx/effects';
-import { Gamer, SelectableGamer } from '@app/models';
+import { Gamer } from '@app/models';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +17,11 @@ export class GameStoreFacade {
 
   public gamersForNewGame$ = this.store.pipe(
     select(selectors.selectGamersForNewGame)
+  );
+
+  // TODO timofeev - подключить когда будет возможность добавить игрока
+  public gamersNotInGame$ = this.store.pipe(
+    select(selectors.selectGamersNotInGame)
   );
 
   public loadGameSuccess$ = this.action$.pipe(

@@ -4,13 +4,13 @@ import { GameDetails, NewGameFormValue, SelectableGamer } from '@app/models';
 import { GameStoreFacade } from '@app/state/game';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-create-game',
   templateUrl: './create-game.component.html',
   styleUrls: ['./create-game.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-@UntilDestroy()
 export class CreateGameComponent implements OnInit {
   public form: FormGroup<NewGameFormValue>;
 
@@ -69,8 +69,7 @@ export class CreateGameComponent implements OnInit {
     };
 
     newGame.totalBuy = newGame.gamersBuy.reduce((acc, current) => {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      acc += current.totalBuy!;
+      acc += current.totalBuy ?? 0;
       return acc;
     }, 0);
 

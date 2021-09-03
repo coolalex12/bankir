@@ -8,5 +8,6 @@ import * as selectors from './user.selectors';
 })
 export class UserStoreFacade {
   constructor(private store: Store) {}
-  public users$ = this.store.pipe(select(selectors.selectAllUsers));
+
+  public allUsers$ = this.store.pipe(select(selectors.selectAllUsers));
 }

@@ -23,7 +23,6 @@ export class UsersComponent {
     //   .subscribe((key) => {
     //     console.log('key: ', key);
     //   });
-
     // this.dbService
     //   .add('users', {
     //     name: `Test`,
@@ -32,7 +31,6 @@ export class UsersComponent {
     //   .subscribe((key) => {
     //     console.log('key: ', key);
     //   });
-
     //     this.dbService.openCursorByIndex('users', 'name', IDBKeyRange.only("Bruce Wayne")).subscribe((evt) => {
     //       var cursor = (evt.target as IDBOpenDBRequest).result;
     //       if(cursor) {
@@ -43,5 +41,5 @@ export class UsersComponent {
     //       }
     //   });
   }
-  public users$: Observable<Gamer[]> = this.userStateFacade.users$;
+  public users$: Observable<Gamer[]> = this.userStateFacade.allUsers$;
 }
