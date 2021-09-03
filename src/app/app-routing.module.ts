@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UsersComponent } from './components/users/users.component';
 import { GameDetailsComponent } from './components/game-details/game-details.component';
-import { HomeResolver } from './resolvers/home.resolver';
-import { HomeComponent } from './components/home/home.component';
 import { GameDetailsResolver } from './resolvers/game-details.resolver';
 import { CreateGameComponent } from './components/create-game/create-game.component';
 import { CreateGameResolver } from './resolvers/create-game.resolver';
@@ -11,8 +9,10 @@ import { CreateGameResolver } from './resolvers/create-game.resolver';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    resolve: { data: HomeResolver },
+    loadChildren: () =>
+      import('@app/games-list/games-list.module').then(
+        (m) => m.GamesListModule
+      ),
   },
   {
     path: 'users',
