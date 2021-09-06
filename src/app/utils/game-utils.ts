@@ -1,10 +1,17 @@
-import { Buy, GameDetails, Gamer } from '@app/models';
+import { Buy, GameDetails } from '@app/models';
 
-export const addBuyToGame = (game: GameDetails, gamerId: number, nominal: number): GameDetails => {
+export const addBuyToGame = (
+  game: GameDetails,
+  gamerId: number,
+  nominal: number
+): GameDetails => {
   const gamerBuy = game.gamersBuy.find((item) => item.user.id === gamerId);
   if (gamerBuy !== undefined) {
-    const buyIndex: number = gamerBuy.buy.findIndex((item) => item.nominal === nominal);
-    const buy = buyIndex !== -1 ? gamerBuy.buy[buyIndex] : { nominal, count: 1 };
+    const buyIndex: number = gamerBuy.buy.findIndex(
+      (item) => item.nominal === nominal
+    );
+    const buy =
+      buyIndex !== -1 ? gamerBuy.buy[buyIndex] : { nominal, count: 1 };
     if (buyIndex !== -1) {
       gamerBuy.buy.splice(buyIndex, 1, { ...buy, count: buy.count + 1 });
     } else {
@@ -32,7 +39,10 @@ export const removeBuyFromGame = (
 ): GameDetails => {
   const gamerBuy = game.gamersBuy.find((item) => item.user.id === gamerId);
   if (gamerBuy !== undefined) {
-    const buyIndex: number = findLastIndex<Buy>(gamerBuy.buy, (item) => item.nominal === nominal);
+    const buyIndex: number = findLastIndex<Buy>(
+      gamerBuy.buy,
+      (item) => item.nominal === nominal
+    );
 
     if (buyIndex === -1) {
       return game;
@@ -81,7 +91,10 @@ export const calculateGameResults = (game: GameDetails): GameDetails => {
     if (typeof current.totalResult === 'number' && current.totalResult > 0) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       game.win! += current.totalResult;
-    } else if (typeof current.totalResult === 'number' && current.totalResult < 0) {
+    } else if (
+      typeof current.totalResult === 'number' &&
+      current.totalResult < 0
+    ) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       game.lose! += current.totalResult;
     }

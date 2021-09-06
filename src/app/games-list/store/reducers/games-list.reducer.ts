@@ -1,5 +1,5 @@
 import { GameDetails } from '@app/models';
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import * as GamesListActions from '../actions/games-list.actions';
 
 export const gamesListFeatureKey = 'gamesList';

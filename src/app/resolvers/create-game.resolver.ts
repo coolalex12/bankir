@@ -6,7 +6,6 @@ import {
 } from '@angular/router';
 import { GameStoreFacade } from '@app/state/game';
 import { Observable, of } from 'rxjs';
-import { mapTo, take, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',

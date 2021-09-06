@@ -2,7 +2,6 @@ import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 import { Gamer } from '@app/models';
 
-
 export const loadUsers = createAction(
   '[User/API] Load Users',
   props<{ users: Gamer[] }>()
@@ -48,6 +47,4 @@ export const deleteUsers = createAction(
   props<{ ids: string[] }>()
 );
 
-export const clearUsers = createAction(
-  '[User/API] Clear Users'
-);
+export const clearUsers = createAction('[User/API] Clear Users');
