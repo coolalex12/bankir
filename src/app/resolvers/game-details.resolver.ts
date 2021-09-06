@@ -23,3 +23,4 @@ export class GameDetailsResolver implements Resolve<boolean> {
     return this.gameStoreFacade.loadGameSuccess$.pipe(take(1), mapTo(true));
   }
 }
+//d
