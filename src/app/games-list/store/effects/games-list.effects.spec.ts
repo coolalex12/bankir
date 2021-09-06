@@ -10,10 +10,7 @@ describe('GamesListEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        GamesListEffects,
-        provideMockActions(() => actions$)
-      ]
+      providers: [GamesListEffects, provideMockActions(() => actions$)],
     });
 
     effects = TestBed.inject(GamesListEffects);

@@ -4,7 +4,7 @@ import { selectGamesListState } from './games-list.selectors';
 describe('GamesList Selectors', () => {
   it('should select the feature state', () => {
     const result = selectGamesListState({
-      [fromGamesList.gamesListFeatureKey]: {}
+      [fromGamesList.gamesListFeatureKey]: {},
     });
 
     expect(result).toEqual({});

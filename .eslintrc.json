@@ -16,8 +16,9 @@
     ],
     "warnOnUnsupportedTypeScriptVersion": false
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
+    "prettier/prettier": "error",
     "no-console": "error",
     "@typescript-eslint/no-unused-vars": ["error", { "args": "none" }],
     "max-len": [
