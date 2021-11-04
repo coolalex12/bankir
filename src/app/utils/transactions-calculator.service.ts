@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GameDetails, Gamer, GameTransaction, UserBuy } from '@app/models';
+import { GameDetails, GameTransaction, UserBuy } from '@app/models';
 import { Observable, of } from 'rxjs';
 
 type TUserBuyWithNotEmptyTotalResults = Omit<UserBuy, 'totalResult'> & {
@@ -21,6 +21,7 @@ export class TransactionsCalculatorService {
     const diff = totalLose - totalWin;
     if (diff !== 0) {
       // TODO обработка ошибки
+      // eslint-disable-next-line no-console
       console.log('разница!', diff);
     }
 
@@ -59,9 +60,7 @@ export class TransactionsCalculatorService {
     return of(res);
   }
 
-  private getWinnersAndLosers(
-    allItems: UserBuy[]
-  ): {
+  private getWinnersAndLosers(allItems: UserBuy[]): {
     losers: TUserBuyWithNotEmptyTotalResults[];
     winners: TUserBuyWithNotEmptyTotalResults[];
     totalWin: number;

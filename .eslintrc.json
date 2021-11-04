@@ -8,11 +8,19 @@
   "parserOptions": {
     "ecmaVersion": 12,
     "sourceType": "module",
-    "project": ["tsconfig.app.json", "tsconfig.spec.json", "e2e/tsconfig.json"]
+    "project": [
+      "tsconfig.json",
+      "tsconfig.app.json",
+      "tsconfig.spec.json",
+      "e2e/tsconfig.json"
+    ],
+    "warnOnUnsupportedTypeScriptVersion": false
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
+    "prettier/prettier": "error",
     "no-console": "error",
+    "@typescript-eslint/no-unused-vars": ["error", { "args": "none" }],
     "max-len": [
       "error",
       {
