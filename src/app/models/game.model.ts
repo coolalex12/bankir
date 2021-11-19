@@ -1,5 +1,5 @@
 import { Buy } from './buy.model';
-import { Gamer } from './user.model';
+import { Gamer } from './gamer.model';
 import { GameTransaction } from './transaction.model';
 
 export interface GameDetails {

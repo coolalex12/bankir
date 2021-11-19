@@ -199,12 +199,8 @@ export class GameEffects {
       switchMap(() =>
         this.dbService.getGamers().pipe(
           map((gamers) => {
-            const selectableGamers = gamers.map((item) => ({
-              ...item,
-              selected: true,
-            }));
             return GameActions.loadGamersForNewGameSuccess({
-              gamers: selectableGamers,
+              gamers,
             });
           }),
           catchError((error) => {

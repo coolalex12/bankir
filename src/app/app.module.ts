@@ -22,7 +22,7 @@ import { BalanceEditorDialogComponent } from './components/balance-editor-dialog
 import localeRu from '@angular/common/locales/ru';
 import { GameResultsComponent } from './components/game-results/game-results.component';
 import { AddBuyDialogComponent } from './components/add-buy-dialog/add-buy-dialog.component';
-import { GamersSelectListComponent } from './components/gamers-select-list/gamers-select-list.component';
+import { EntitySelectListComponent } from './components/entity-select-list/entity-select-list.component';
 import { AddGamersComponent } from './components/add-gamers/add-gamers.component';
 
 registerLocaleData(localeRu);
@@ -35,7 +35,7 @@ registerLocaleData(localeRu);
     BalanceEditorDialogComponent,
     GameResultsComponent,
     AddBuyDialogComponent,
-    GamersSelectListComponent,
+    EntitySelectListComponent,
     AddGamersComponent,
   ],
   imports: [

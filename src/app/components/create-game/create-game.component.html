@@ -1,14 +1,9 @@
 <h2>Выберите игроков</h2>
-<form fxLayout="column" [formGroup]="form">
-  <div
-    formArrayName="gamers"
-    *ngFor="let gamer of gamersFormArray.controls; let i = index"
-  >
-    <mat-checkbox [formControlName]="i" class="gamer-checkbox">
-      {{ gamers[i].name }}
-    </mat-checkbox>
-  </div>
-</form>
+
+<app-entity-select-list
+  [formControl]="gamersFormControl"
+  [items]="gamers"
+></app-entity-select-list>
 
 <button
   mat-raised-button

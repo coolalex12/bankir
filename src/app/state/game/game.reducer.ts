@@ -1,4 +1,4 @@
-import { GameDetails, SelectableGamer } from '@app/models';
+import { GameDetails, Gamer } from '@app/models';
 import { createReducer, on } from '@ngrx/store';
 import * as GameActions from './game.actions';
 
@@ -6,7 +6,7 @@ export const gameFeatureKey = 'game';
 
 export interface State {
   gameDetails: GameDetails;
-  gamersForNewGame: SelectableGamer[];
+  gamersForNewGame: Gamer[];
 }
 
 export const initialState: State = {

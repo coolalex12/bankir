@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormGroup, FormArray, FormControl } from '@ngneat/reactive-forms';
-import { GameDetails, NewGameFormValue, SelectableGamer } from '@app/models';
+import { FormControl } from '@ngneat/reactive-forms';
+import { GameDetails, Gamer } from '@app/models';
 import { GameStoreFacade } from '@app/state/game';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
@@ -12,26 +12,18 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateGameComponent implements OnInit {
-  public form: FormGroup<NewGameFormValue>;
+  public gamers: Gamer[] = [];
 
-  public gamers: SelectableGamer[] = [];
+  gamersFormControl = new FormControl();
 
-  constructor(private readonly gameStoreFacade: GameStoreFacade) {
-    this.form = new FormGroup<NewGameFormValue>({
-      gamers: new FormArray<SelectableGamer>([]),
-    });
-  }
-
-  get gamersFormArray(): FormArray {
-    return this.form.controls.gamers as FormArray;
-  }
+  constructor(private readonly gameStoreFacade: GameStoreFacade) {}
 
   public ngOnInit(): void {
     this.gameStoreFacade.gamersForNewGame$
       .pipe(untilDestroyed(this))
       .subscribe((gamers) => {
         this.gamers = gamers;
-        this.fillGamersFormArray(gamers);
+        this.gamersFormControl.setValue(gamers);
       });
   }
 
@@ -40,20 +32,11 @@ export class CreateGameComponent implements OnInit {
     this.gameStoreFacade.createGame(newGame);
   }
 
-  private fillGamersFormArray(gamers: SelectableGamer[]): void {
-    gamers.map((gamer) => {
-      this.gamersFormArray.push(new FormControl(gamer.selected));
-    });
-  }
-
   private getNewGameFormValue(): GameDetails {
-    const selectedGamers: SelectableGamer[] = this.gamersFormArray.value.reduce(
-      (acc, value, i) => (value ? [...acc, this.gamers[i]] : acc),
-      []
-    );
+    const selectedGamers = this.gamersFormControl.value;
     const newGame: GameDetails = {
       date: new Date().toLocaleDateString(),
-      gamersBuy: selectedGamers.map((item) => ({
+      gamersBuy: selectedGamers.map((item: Gamer) => ({
         user: {
           id: item.id,
           name: item.name,
