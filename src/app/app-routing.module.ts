@@ -5,6 +5,7 @@ import { GameDetailsComponent } from './components/game-details/game-details.com
 import { GameDetailsResolver } from './resolvers/game-details.resolver';
 import { CreateGameComponent } from './components/create-game/create-game.component';
 import { CreateGameResolver } from './resolvers/create-game.resolver';
+import { AddGamersComponent } from './components/add-gamers/add-gamers.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
     resolve: { data: GameDetailsResolver },
   },
   {
+    path: 'game/:id/add-gamers',
+    component: AddGamersComponent,
+  },
+  {
     path: '**',
     redirectTo: '',
   },
@@ -36,7 +41,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { useHash: true /*, enableTracing: true*/ }),
+    RouterModule.forRoot(routes, { useHash: true, enableTracing: true }),
   ],
   exports: [RouterModule],
 })

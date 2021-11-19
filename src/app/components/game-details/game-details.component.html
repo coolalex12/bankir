@@ -64,6 +64,14 @@
   >
     Рассчитать переводы
   </button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="buy-btn"
+    (click)="goToAddGamers()"
+  >
+    Добавить игроков
+  </button>
 
   <div *ngIf="game.transactions">
     <div *ngFor="let transaction of game.transactions">

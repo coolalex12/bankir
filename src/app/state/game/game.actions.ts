@@ -88,3 +88,7 @@ export const calculateTransactionsFailure = createAction(
   '[Game] Calculate Transactions Failure',
   props<{ error: any }>()
 );
+
+export const redirectToAddGamers = createAction(
+  '[Game] Redirect To Add Gamers'
+);

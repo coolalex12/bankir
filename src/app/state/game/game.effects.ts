@@ -55,6 +55,24 @@ export class GameEffects {
     { dispatch: false }
   );
 
+  public redirectToAddGamers$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(GameActions.redirectToAddGamers),
+        tap(() => {
+          let route = this.router.routerState.root;
+          while (route.firstChild) {
+            route = route.firstChild;
+          }
+
+          route.snapshot;
+          this.router.navigate(['add-gamers'], { relativeTo: route });
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
   public loadGame$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GameActions.loadGameDetailsStart),

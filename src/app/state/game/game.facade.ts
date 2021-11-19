@@ -53,4 +53,8 @@ export class GameStoreFacade {
   public calculateTransactions(): void {
     this.store.dispatch(actions.calculateTransactionsStart());
   }
+
+  public redirectToAddGamers(): void {
+    this.store.dispatch(actions.redirectToAddGamers());
+  }
 }
