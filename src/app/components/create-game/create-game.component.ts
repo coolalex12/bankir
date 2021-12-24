@@ -34,9 +34,9 @@ export class CreateGameComponent implements OnInit {
 
   private getNewGameFormValue(): GameDetails {
     const selectedGamers = this.gamersFormControl.value;
-    const newGame: GameDetails = {
-      date: new Date().toLocaleDateString(),
-      gamersBuy: selectedGamers.map((item: Gamer) => ({
+    const newGame: GameDetails = new GameDetails(
+      new Date().toLocaleDateString(),
+      selectedGamers.map((item: Gamer) => ({
         user: {
           id: item.id,
           name: item.name,
@@ -48,10 +48,10 @@ export class CreateGameComponent implements OnInit {
           },
         ],
         totalBuy: 200,
-      })),
-    };
+      }))
+    );
 
-    newGame.totalBuy = newGame.gamersBuy.reduce((acc, current) => {
+    newGame.totalBuy = newGame.gamers.reduce((acc, current) => {
       acc += current.totalBuy ?? 0;
       return acc;
     }, 0);

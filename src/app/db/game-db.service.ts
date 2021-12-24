@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GameDetails, Gamer } from '@app/models';
+import { GameDetails, GameDetailsDto, Gamer } from '@app/models';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,24 +9,40 @@ import { DB_CHEMA } from './db-shema';
   providedIn: 'root',
 })
 export class GameDbService {
-  constructor(private readonly dbService: NgxIndexedDBService<GameDetails>) {}
+  constructor(
+    private readonly dbService: NgxIndexedDBService<GameDetailsDto>
+  ) {}
 
   private readonly gamesTableName = DB_CHEMA.tables.games.tableName;
 
   public createGame(game: GameDetails): Observable<number> {
-    return this.dbService.add(this.gamesTableName, game);
+    return this.dbService.add(this.gamesTableName, GameDetails.toDto(game));
   }
 
   public getGame(gameId: number): Observable<GameDetails> {
-    return this.dbService.getByKey(this.gamesTableName, gameId);
+    return this.dbService
+      .getByKey(this.gamesTableName, gameId)
+      .pipe(map(GameDetails.fromDto));
   }
 
   public getGames(): Observable<GameDetails[]> {
-    return this.dbService.getAll(this.gamesTableName).pipe(map(this.sortGames));
+    return this.dbService.getAll(this.gamesTableName).pipe(
+      map((gameDetailsDto) => {
+        const gameDetails = gameDetailsDto.map(GameDetails.fromDto);
+        const sorted = this.sortGames(gameDetails);
+        return sorted;
+      })
+    );
   }
 
   public updateGame(game: GameDetails): Observable<GameDetails[]> {
-    return this.dbService.update(this.gamesTableName, game);
+    return this.dbService
+      .update(this.gamesTableName, GameDetails.toDto(game))
+      .pipe(
+        map((res) => {
+          return res.map(GameDetails.fromDto);
+        })
+      );
   }
 
   public getGamers(): Observable<Gamer[]> {

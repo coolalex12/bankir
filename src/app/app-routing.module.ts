@@ -32,6 +32,7 @@ const routes: Routes = [
   {
     path: 'game/:id/add-gamers',
     component: AddGamersComponent,
+    resolve: { data: GameDetailsResolver },
   },
   {
     path: '**',

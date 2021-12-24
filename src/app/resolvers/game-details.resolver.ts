@@ -20,6 +20,7 @@ export class GameDetailsResolver implements Resolve<boolean> {
   ): Observable<boolean> {
     const id = Number(route.params.id);
     this.gameStoreFacade.loadGame(id);
+    this.gameStoreFacade.loadGamersForNewGame();
     return this.gameStoreFacade.loadGameSuccess$.pipe(take(1), mapTo(true));
   }
 }

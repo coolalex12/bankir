@@ -15,12 +15,10 @@ export const selectGamersForNewGame = createSelector(
   (state) => state.gamersForNewGame
 );
 
-// TODO timofeev - подключить когда будет возможность добавить игрока
 export const selectGamersInGame = createSelector(selectGameState, (state) =>
-  state.gameDetails.gamersBuy.map((item) => item.user)
+  state.gameDetails.gamers.map((item) => item.user)
 );
 
-// TODO timofeev - подключить когда будет возможность добавить игрока
 export const selectGamersNotInGame = createSelector(
   selectGamersForNewGame,
   selectGamersInGame,

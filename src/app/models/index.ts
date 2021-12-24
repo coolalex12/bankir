@@ -1,3 +1,4 @@
+export * from './dbModels';
 export * from './gamer.model';
 export * from './game.model';
 export * from './buy.model';
