@@ -1,4 +1,8 @@
-<form fxLayout="column" [formGroup]="form">
+<form
+  fxLayout="column"
+  [formGroup]="form"
+  *ngIf="formArray?.controls?.length; else emptyList"
+>
   <div
     formArrayName="array"
     *ngFor="let control of formArray.controls; let i = index"
@@ -8,3 +12,4 @@
     </mat-checkbox>
   </div>
 </form>
+<ng-template #emptyList>пустой список</ng-template>
