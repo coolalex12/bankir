@@ -48,6 +48,10 @@ export class GameDetailsComponent {
     this.gameStoreFacade.calculateTransactions();
   }
 
+  public goToAddGamers(): void {
+    this.gameStoreFacade.redirectToAddGamers();
+  }
+
   public editBalanceBtnClick(userBuy: UserBuy): void {
     const dialogRef = this.dialog.open(BalanceEditorDialogComponent, {
       width: '280px',

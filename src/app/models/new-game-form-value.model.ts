@@ -1,5 +1,5 @@
-import { SelectableGamer } from './user.model';
+import { Gamer } from './gamer.model';
 
 export interface NewGameFormValue {
-  gamers: SelectableGamer[];
+  gamers: Gamer[];
 }

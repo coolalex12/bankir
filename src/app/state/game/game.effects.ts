@@ -14,6 +14,7 @@ import * as GameSelectors from './game.selectors';
 import { GameDbService } from '@app/db';
 import {
   addBuyToGame,
+  addGamersToGame,
   removeBuyFromGame,
   saveGamerBalance,
 } from '@app/utils/game-utils';
@@ -43,12 +44,32 @@ export class GameEffects {
     );
   });
 
-  public redirectToNewGame$ = createEffect(
+  public redirectToGame$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(GameActions.createGameDetailsSuccess),
+        ofType(
+          GameActions.createGameDetailsSuccess,
+          GameActions.addGamersToGameSuccess
+        ),
         tap(({ game }) => {
           this.router.navigate(['game', game.id], { replaceUrl: true });
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  public redirectToAddGamers$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(GameActions.redirectToAddGamers),
+        tap(() => {
+          let route = this.router.routerState.root;
+          while (route.firstChild) {
+            route = route.firstChild;
+          }
+
+          this.router.navigate(['add-gamers'], { relativeTo: route });
         })
       );
     },
@@ -88,6 +109,31 @@ export class GameEffects {
           }),
           catchError((error) => {
             return of(GameActions.updateGameDetailsFailure({ error }));
+          })
+        );
+      })
+    );
+  });
+
+  public addGamersToGame$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GameActions.addGamersToGameStart),
+      switchMap((action) =>
+        of(action).pipe(
+          withLatestFrom(
+            this.store.pipe(select(GameSelectors.selectGameDetails))
+          )
+        )
+      ),
+      switchMap(([{ gamers }, game]) => {
+        const clonedGame: GameDetails = JSON.parse(JSON.stringify(game));
+        const gameForSave = addGamersToGame(gamers, clonedGame);
+        return this.dbService.updateGame(gameForSave).pipe(
+          map((game) => {
+            return GameActions.addGamersToGameSuccess({ game: gameForSave });
+          }),
+          catchError((error) => {
+            return of(GameActions.addGamersToGameFailure({ error }));
           })
         );
       })
@@ -181,12 +227,8 @@ export class GameEffects {
       switchMap(() =>
         this.dbService.getGamers().pipe(
           map((gamers) => {
-            const selectableGamers = gamers.map((item) => ({
-              ...item,
-              selected: true,
-            }));
             return GameActions.loadGamersForNewGameSuccess({
-              gamers: selectableGamers,
+              gamers,
             });
           }),
           catchError((error) => {

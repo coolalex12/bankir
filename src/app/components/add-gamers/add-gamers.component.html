@@ -1,15 +1,14 @@
-<h2>Выберите игроков</h2>
-
 <app-entity-select-list
+  *ngIf="items$ | async as items"
   [formControl]="gamersFormControl"
-  [items]="gamers"
+  [items]="items"
 ></app-entity-select-list>
 
 <button
   mat-raised-button
   color="primary"
-  (click)="createGame()"
-  style="margin-top: 15px"
+  (click)="addButtnClicked()"
+  [disabled]="isAddButtonDisabled"
 >
-  Создать игру
+  Добавить
 </button>

@@ -15,7 +15,7 @@ export class TransactionsCalculatorService {
   public calculate(gameDetails: GameDetails): Observable<GameTransaction[]> {
     const res: GameTransaction[] = [];
     const { winners, losers, totalLose, totalWin } = this.getWinnersAndLosers(
-      gameDetails.gamersBuy
+      gameDetails.gamers
     );
 
     const diff = totalLose - totalWin;

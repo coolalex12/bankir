@@ -1,7 +1,6 @@
-<!-- {{ gameDetails$ | async | json }} -->
 <div *ngIf="gameDetails$ | async as game">
   <div
-    *ngFor="let gamer of game.gamersBuy"
+    *ngFor="let gamer of game.gamers"
     fxLayout="column"
     class="gamer-container"
     [ngClass]="gamerClassName(gamer)"
@@ -63,6 +62,14 @@
     (click)="calcTransactions()"
   >
     Рассчитать переводы
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="buy-btn"
+    (click)="goToAddGamers()"
+  >
+    Добавить игроков
   </button>
 
   <div *ngIf="game.transactions">

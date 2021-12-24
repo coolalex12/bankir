@@ -1,11 +1,11 @@
-import { Buy, GameDetails } from '@app/models';
+import { Buy, GameDetails, Gamer } from '@app/models';
 
 export const addBuyToGame = (
   game: GameDetails,
   gamerId: number,
   nominal: number
 ): GameDetails => {
-  const gamerBuy = game.gamersBuy.find((item) => item.user.id === gamerId);
+  const gamerBuy = game.gamers.find((item) => item.user.id === gamerId);
   if (gamerBuy !== undefined) {
     const buyIndex: number = gamerBuy.buy.findIndex(
       (item) => item.nominal === nominal
@@ -37,7 +37,7 @@ export const removeBuyFromGame = (
   gamerId: number,
   nominal: number
 ): GameDetails => {
-  const gamerBuy = game.gamersBuy.find((item) => item.user.id === gamerId);
+  const gamerBuy = game.gamers.find((item) => item.user.id === gamerId);
   if (gamerBuy !== undefined) {
     const buyIndex: number = findLastIndex<Buy>(
       gamerBuy.buy,
@@ -73,7 +73,7 @@ export const saveGamerBalance = (
   gamerId: number,
   balance: number
 ): GameDetails => {
-  const gamerBuy = game.gamersBuy.find((item) => item.user.id === gamerId);
+  const gamerBuy = game.gamers.find((item) => item.user.id === gamerId);
   if (gamerBuy !== undefined) {
     gamerBuy.balance = balance;
     gamerBuy.totalResult = gamerBuy.balance - (Number(gamerBuy.totalBuy) ?? 0);
@@ -83,10 +83,33 @@ export const saveGamerBalance = (
   return game;
 };
 
+export const addGamersToGame = (
+  gamers: Gamer[],
+  game: GameDetails
+): GameDetails => {
+  const buy = gamers.map((item: Gamer) => ({
+    user: {
+      id: item.id,
+      name: item.name,
+    },
+    buy: [
+      {
+        nominal: 200,
+        count: 1,
+      },
+    ],
+    totalBuy: 200,
+  }));
+
+  game.gamers.push(...buy);
+  calculateGameResults(game);
+  return game;
+};
+
 export const calculateGameResults = (game: GameDetails): GameDetails => {
   game.win = 0;
   game.lose = 0;
-  game.totalBuy = game.gamersBuy.reduce((acc, current) => {
+  game.totalBuy = game.gamers.reduce((acc, current) => {
     acc += current.totalBuy ?? 0;
     if (typeof current.totalResult === 'number' && current.totalResult > 0) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

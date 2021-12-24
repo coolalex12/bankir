@@ -1,4 +1,4 @@
-import { Gamer } from './user.model';
+import { Gamer } from './gamer.model';
 
 export interface GameTransaction {
   sender: Gamer;
