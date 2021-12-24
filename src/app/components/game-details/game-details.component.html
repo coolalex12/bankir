@@ -55,22 +55,25 @@
   </div>
 
   <app-game-results [game]="game"></app-game-results>
-  <button
-    mat-raised-button
-    color="primary"
-    class="buy-btn"
-    (click)="calcTransactions()"
-  >
-    Рассчитать переводы
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    class="buy-btn"
-    (click)="goToAddGamers()"
-  >
-    Добавить игроков
-  </button>
+
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="20px">
+    <button
+      mat-raised-button
+      color="primary"
+      class="buy-btn"
+      (click)="calcTransactions()"
+    >
+      Рассчитать переводы
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="buy-btn"
+      (click)="goToAddGamers()"
+    >
+      Добавить игроков
+    </button>
+  </div>
 
   <div *ngIf="game.transactions">
     <div *ngFor="let transaction of game.transactions">

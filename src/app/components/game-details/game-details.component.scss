@@ -1,5 +1,5 @@
 :host {
-  padding: 0 10px;
+  padding: var(--padding);
   display: block;
 
   .btn-edit {
@@ -11,7 +11,9 @@
     border-bottom: 1px solid rgb(129, 129, 129);
     margin-left: -10px;
     margin-right: -10px;
-    padding: 2px;
+    padding: var(--padding);
+    padding-bottom: 10px;
+    padding-top: 10px;
 
     &.win {
       background-color: #c7f7cb;
