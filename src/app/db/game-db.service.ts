@@ -88,6 +88,14 @@ export class GameDbService {
         id: 10,
         name: 'Яна',
       },
+      {
+        id: 11,
+        name: 'Игрок 1',
+      },
+      {
+        id: 12,
+        name: 'Игрок 2',
+      },
     ];
     return of(gamers);
   }
