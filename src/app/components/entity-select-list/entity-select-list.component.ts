@@ -53,9 +53,9 @@ export class EntitySelectListComponent implements ControlValueAccessor {
     return this._items;
   }
 
-  writeValue(val: Entity[]): void {
+  writeValue(val: Entity[] | null): void {
     for (const [index, item] of this.items.entries()) {
-      if (val.some((innerVal) => innerVal.id === item.id)) {
+      if (val?.some((innerVal) => innerVal.id === item.id)) {
         this.formArray.controls[index].setValue(true);
       }
     }

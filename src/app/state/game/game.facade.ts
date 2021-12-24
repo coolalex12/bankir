@@ -17,7 +17,6 @@ export class GameStoreFacade {
     select(selectors.selectGamersForNewGame)
   );
 
-  // TODO timofeev - подключить когда будет возможность добавить игрока
   public gamersNotInGame$ = this.store.pipe(
     select(selectors.selectGamersNotInGame)
   );
@@ -48,6 +47,10 @@ export class GameStoreFacade {
 
   public saveGamerBalance(gamer: Gamer, balance: number): void {
     this.store.dispatch(actions.saveGamerBalanceStart({ gamer, balance }));
+  }
+
+  public addGamersToGame(gamers: Gamer[]): void {
+    this.store.dispatch(actions.addGamersToGameStart({ gamers }));
   }
 
   public calculateTransactions(): void {

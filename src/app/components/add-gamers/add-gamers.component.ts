@@ -1,4 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { GameStoreFacade } from '@app/state/game';
 
 @Component({
   selector: 'app-add-gamers',
@@ -7,5 +9,19 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddGamersComponent {
-  constructor() {}
+  constructor(private readonly gameStoreFacade: GameStoreFacade) {}
+
+  gamersFormControl = new FormControl();
+
+  items$ = this.gameStoreFacade.gamersNotInGame$;
+
+  get isAddButtonDisabled(): boolean {
+    return (
+      !this.gamersFormControl.value || this.gamersFormControl.value?.length < 1
+    );
+  }
+
+  addButtnClicked(): void {
+    this.gameStoreFacade.addGamersToGame(this.gamersFormControl.value);
+  }
 }

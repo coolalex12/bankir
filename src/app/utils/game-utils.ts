@@ -1,4 +1,4 @@
-import { Buy, GameDetails } from '@app/models';
+import { Buy, GameDetails, Gamer } from '@app/models';
 
 export const addBuyToGame = (
   game: GameDetails,
@@ -79,6 +79,29 @@ export const saveGamerBalance = (
     gamerBuy.totalResult = gamerBuy.balance - (Number(gamerBuy.totalBuy) ?? 0);
   }
 
+  calculateGameResults(game);
+  return game;
+};
+
+export const addGamersToGame = (
+  gamers: Gamer[],
+  game: GameDetails
+): GameDetails => {
+  const buy = gamers.map((item: Gamer) => ({
+    user: {
+      id: item.id,
+      name: item.name,
+    },
+    buy: [
+      {
+        nominal: 200,
+        count: 1,
+      },
+    ],
+    totalBuy: 200,
+  }));
+
+  game.gamers.push(...buy);
   calculateGameResults(game);
   return game;
 };

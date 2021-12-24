@@ -1,1 +1,15 @@
 <p>add-gamers works!</p>
+<app-entity-select-list
+  *ngIf="items$ | async as items"
+  [formControl]="gamersFormControl"
+  [items]="items"
+></app-entity-select-list>
+
+<button
+  mat-raised-button
+  color="primary"
+  (click)="addButtnClicked()"
+  [disabled]="isAddButtonDisabled"
+>
+  Добавить
+</button>
