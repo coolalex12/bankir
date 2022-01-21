@@ -2,6 +2,10 @@
   padding: var(--padding);
   display: block;
 
+  .separator {
+    margin: 0;
+    margin-bottom: 10px;
+  }
   .btn-edit {
     height: 30px;
     line-height: 30px;

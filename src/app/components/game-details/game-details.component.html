@@ -1,53 +1,55 @@
-<div *ngIf="gameDetails$ | async as game">
-  <div
-    *ngFor="let gamer of game.gamers"
-    fxLayout="column"
-    class="gamer-container"
-    [ngClass]="gamerClassName(gamer)"
-  >
-    <div fxLayout="row" fxLayoutGap="10px">
-      <div fxLayout="row">
-        <button
-          mat-raised-button
-          color="primary"
-          class="buy-btn"
-          (click)="addBuyBtnClick(gamer.user)"
-        >
-          +/-
-        </button>
-      </div>
-
-      <div
-        fxLayout="column"
-        fxFlex
-        fxLayoutAlign="start start"
-        fxLayoutGap="5px"
-      >
-        <div fxLayout="row wrap" fxLayoutGap="5px">
-          <span class="gamer-name">
-            {{ gamer.user.name }}: {{ gamer.totalBuy | number }}
-          </span>
-          <span *ngFor="let buy of gamer.buy">
-            {{ buy.nominal }}*{{ buy.count }}
-          </span>
+<div *ngIf="gameDetails$ | async as game" fxLayout="column" fxLayoutGap="10px">
+  <div>
+    <div
+      *ngFor="let gamer of game.gamers"
+      fxLayout="column"
+      class="gamer-container"
+      [ngClass]="gamerClassName(gamer)"
+    >
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxLayout="row">
+          <button
+            mat-raised-button
+            color="primary"
+            class="buy-btn"
+            (click)="addBuyBtnClick(gamer.user)"
+          >
+            +/-
+          </button>
         </div>
 
-        <div fxLayout="row" fxLayoutAlign="start center">
-          <div fxLayout="row" fxLayoutAlign="start center">
-            <mat-label>На руках: {{ gamer.balance | number }}</mat-label>
-            <button
-              mat-icon-button
-              color="primary"
-              class="btn-edit"
-              (click)="editBalanceBtnClick(gamer)"
-            >
-              <mat-icon>create</mat-icon>
-            </button>
+        <div
+          fxLayout="column"
+          fxFlex
+          fxLayoutAlign="start start"
+          fxLayoutGap="5px"
+        >
+          <div fxLayout="row wrap" fxLayoutGap="5px">
+            <span class="gamer-name">
+              {{ gamer.user.name }}: {{ gamer.totalBuy | number }}
+            </span>
+            <span *ngFor="let buy of gamer.buy">
+              {{ buy.nominal }}*{{ buy.count }}
+            </span>
           </div>
 
-          <div class="total">
-            Итог: <ng-container *ngIf="isWinner(gamer)">+</ng-container>
-            {{ gamer.totalResult | number }}
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <div fxLayout="row" fxLayoutAlign="start center">
+              <mat-label>На руках: {{ gamer.balance | number }}</mat-label>
+              <button
+                mat-icon-button
+                color="primary"
+                class="btn-edit"
+                (click)="editBalanceBtnClick(gamer)"
+              >
+                <mat-icon>create</mat-icon>
+              </button>
+            </div>
+
+            <div class="total">
+              Итог: <ng-container *ngIf="isWinner(gamer)">+</ng-container>
+              {{ gamer.totalResult | number }}
+            </div>
           </div>
         </div>
       </div>
@@ -75,10 +77,27 @@
     </button>
   </div>
 
+  <!-- // TODO timofeev - вынести в отдельный компонент -->
   <div *ngIf="game.transactions">
+    <!-- <hr /> -->
+
     <div *ngFor="let transaction of game.transactions">
       {{ transaction.sender.name }} {{ transaction.value }}
       {{ transaction.recipient.name }}
     </div>
+  </div>
+
+  <!-- // TODO timofeev - вынести в отдельный компонент -->
+  <div *ngIf="fees$ | async as feeList">
+    <ng-container *ngIf="$any(feeList?.length) > 0">
+      <hr class="separator" />
+
+      <b>В фонд 3%:</b>
+
+      <div *ngFor="let fee of feeList">
+        {{ fee.gamer.name }}:
+        {{ fee.value | number: "1.0-0" }}
+      </div>
+    </ng-container>
   </div>
 </div>

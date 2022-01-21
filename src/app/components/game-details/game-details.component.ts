@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   AddBuyDialogData,
   DialogResult,
+  Fee,
   GameDetails,
   Gamer,
   UserBuy,
@@ -29,6 +30,8 @@ export class GameDetailsComponent {
 
   public gameDetails$: Observable<GameDetails | undefined> =
     this.gameStoreFacade.gameDetails$;
+
+  public fees$: Observable<Fee[]> = this.gameStoreFacade.fees$;
 
   public gamerClassName(userBuy: UserBuy) {
     if (typeof userBuy.totalResult !== 'number') {
