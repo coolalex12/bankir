@@ -89,6 +89,10 @@ export class GameDbService {
         name: 'Яна',
       },
       {
+        id: 13,
+        name: 'Надя',
+      },
+      {
         id: 11,
         name: 'Игрок 1',
       },
