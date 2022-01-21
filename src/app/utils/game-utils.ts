@@ -1,4 +1,4 @@
-import { Buy, GameDetails, Gamer } from '@app/models';
+import { Buy, GameDetails, Gamer, UserBuy } from '@app/models';
 
 export const addBuyToGame = (
   game: GameDetails,
@@ -26,8 +26,11 @@ export const addBuyToGame = (
     if (typeof gamerBuy.balance === 'number') {
       gamerBuy.totalResult = gamerBuy.balance - gamerBuy.totalBuy;
     }
+    const date = new Date().toISOString();
+    gamerBuy.lastBuy = { date, nominal };
   }
 
+  sortGamers(game);
   calculateGameResults(game);
   return game;
 };
@@ -64,6 +67,7 @@ export const removeBuyFromGame = (
     }
   }
 
+  sortGamers(game);
   calculateGameResults(game);
   return game;
 };
@@ -87,6 +91,8 @@ export const addGamersToGame = (
   gamers: Gamer[],
   game: GameDetails
 ): GameDetails => {
+  const defaultNominal = 200;
+  const date = new Date().toISOString();
   const buy = gamers.map((item: Gamer) => ({
     user: {
       id: item.id,
@@ -94,11 +100,15 @@ export const addGamersToGame = (
     },
     buy: [
       {
-        nominal: 200,
+        nominal: defaultNominal,
         count: 1,
       },
     ],
-    totalBuy: 200,
+    totalBuy: defaultNominal,
+    lastBuy: {
+      nominal: defaultNominal,
+      date,
+    },
   }));
 
   game.gamers.push(...buy);
@@ -127,6 +137,29 @@ export const calculateGameResults = (game: GameDetails): GameDetails => {
   game.totalResult = game.win + game.lose;
   return game;
 };
+export const sortGamers = (game: GameDetails): GameDetails => {
+  game.gamers.sort(gamersComparator);
+  return game;
+};
+
+function gamersComparator(a: UserBuy, b: UserBuy): 0 | 1 | -1 {
+  if (Boolean(a.lastBuy?.date) && !Boolean(b.lastBuy?.date)) {
+    return 1;
+  }
+
+  if (!Boolean(a.lastBuy?.date) && Boolean(b.lastBuy?.date)) {
+    return -1;
+  }
+
+  if (Boolean(a.lastBuy?.date) && Boolean(b.lastBuy?.date)) {
+    const dateA = new Date(a.lastBuy?.date);
+    const dateB = new Date(b.lastBuy?.date);
+    const res = dateA > dateB ? 1 : -1;
+    return res;
+  }
+
+  return 0;
+}
 
 export function findLastIndex<T>(
   array: Array<T>,
