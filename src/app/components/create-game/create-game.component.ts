@@ -23,7 +23,6 @@ export class CreateGameComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe((gamers) => {
         this.gamers = gamers;
-        this.gamersFormControl.setValue(gamers);
       });
   }
 
