@@ -7,4 +7,3 @@ export * from './dialog-result.model';
 export * from './transaction.model';
 export * from './add-buy-dialog-data.model';
 export * from './entity.model';
-export * from './fee.model';

@@ -13,8 +13,6 @@ export class GameStoreFacade {
   constructor(private store: Store, private action$: Actions) {}
   public gameDetails$ = this.store.pipe(select(selectors.selectGameDetails));
 
-  public fees$ = this.store.pipe(select(selectors.selectFees));
-
   public gamersForNewGame$ = this.store.pipe(
     select(selectors.selectGamersForNewGame)
   );

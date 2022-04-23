@@ -1,4 +1,3 @@
-import { Fee } from '@app/models';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromGame from './game.reducer';
 
@@ -28,14 +27,3 @@ export const selectGamersNotInGame = createSelector(
     return allGamers.filter((item) => !ids.includes(item.id));
   }
 );
-
-const selectWinners = createSelector(selectGameDetails, (gameDetails) => {
-  return gameDetails.gamers.filter((gamer) => Number(gamer.totalResult) > 0);
-});
-
-export const selectFees = createSelector(selectWinners, (winners): Fee[] => {
-  return winners.map((winner) => ({
-    gamer: winner.user,
-    value: Number(winner.totalResult) * 0.03,
-  }));
-});

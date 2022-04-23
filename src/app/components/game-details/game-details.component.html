@@ -86,18 +86,4 @@
       {{ transaction.recipient.name }}
     </div>
   </div>
-
-  <!-- // TODO timofeev - вынести в отдельный компонент -->
-  <div *ngIf="fees$ | async as feeList">
-    <ng-container *ngIf="$any(feeList?.length) > 0">
-      <hr class="separator" />
-
-      <b>В фонд 3%:</b>
-
-      <div *ngFor="let fee of feeList">
-        {{ fee.gamer.name }}:
-        {{ fee.value | number: "1.0-0" }}
-      </div>
-    </ng-container>
-  </div>
 </div>
