@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "ng build --prod --base-href \"https://coolalex12.github.io/bankir/\"",
+    "build": "ng build --prod --base-href 'https://coolalex12.github.io/bankir/'",
     "build:deploy": "npm run build && npm run deploy",
     "deploy": "ng deploy --base-href=/bankir/ ",
     "e2e": "ng e2e",
