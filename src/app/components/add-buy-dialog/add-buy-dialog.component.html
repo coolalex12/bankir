@@ -7,27 +7,30 @@
     class="content"
   >
     <div fxLayout="column" fxLayoutGap="15px">
-      <button
-        mat-raised-button
-        color="primary"
-        class="buy-btn"
-        (click)="incrementValue(+100)"
-      >
-        +{{ 100 }}
-      </button>
-      <button
-        mat-raised-button
-        color="primary"
-        class="buy-btn"
-        (click)="incrementValue(-100)"
-      >
-        -{{ 100 }}
-      </button>
+      <ng-container
+        [ngTemplateOutlet]="incrementButton"
+        [ngTemplateOutletContext]="{ value: 100 }"
+      ></ng-container>
+      <ng-container
+        [ngTemplateOutlet]="incrementButton"
+        [ngTemplateOutletContext]="{ value: -100 }"
+      ></ng-container>
     </div>
 
     <mat-form-field>
       <input matInput type="number" autocomplete="off" [(ngModel)]="value" />
     </mat-form-field>
+
+    <div fxLayout="column" fxLayoutGap="15px">
+      <ng-container
+        [ngTemplateOutlet]="incrementButton"
+        [ngTemplateOutletContext]="{ value: 1000 }"
+      ></ng-container>
+      <ng-container
+        [ngTemplateOutlet]="incrementButton"
+        [ngTemplateOutletContext]="{ value: -1000 }"
+      ></ng-container>
+    </div>
   </div>
 </div>
 <div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
@@ -43,3 +46,9 @@
     Отмена
   </button>
 </div>
+
+<ng-template #incrementButton let-value="value">
+  <button mat-raised-button color="primary" (click)="incrementValue(value)">
+    {{ value }}
+  </button>
+</ng-template>
