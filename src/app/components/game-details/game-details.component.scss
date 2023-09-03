@@ -6,6 +6,7 @@
     margin: 0;
     margin-bottom: 10px;
   }
+
   .btn-edit {
     height: 30px;
     line-height: 30px;
@@ -16,8 +17,8 @@
     margin-left: -10px;
     margin-right: -10px;
     padding: var(--padding);
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding-bottom: 3px;
+    padding-top: 3px;
 
     &.win {
       background-color: #c7f7cb;
@@ -30,10 +31,20 @@
 
   .total {
     font-weight: bold;
+    font-size: 16px;
   }
 
   .gamer-name {
     font-weight: bold;
     padding-right: 10px;
+    font-size: 16px;
+  }
+
+  .validation-error {
+    font-size: 12px;
+  }
+
+  .wrapper {
+    padding-bottom: 10px;
   }
 }

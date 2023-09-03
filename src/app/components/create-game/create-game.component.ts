@@ -40,13 +40,8 @@ export class CreateGameComponent implements OnInit {
           id: item.id,
           name: item.name,
         },
-        buy: [
-          {
-            nominal: 200,
-            count: 1,
-          },
-        ],
-        totalBuy: 200,
+        buy: [],
+        totalBuy: 0,
       }))
     );
 

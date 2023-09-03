@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromGame from './game.reducer';
+import { isNumber } from '@app/utils';
 
 export const selectGameState = createFeatureSelector<fromGame.State>(
   fromGame.gameFeatureKey
@@ -27,3 +28,20 @@ export const selectGamersNotInGame = createSelector(
     return allGamers.filter((item) => !ids.includes(item.id));
   }
 );
+
+export const gamersHasEmptyFields = createSelector(selectGameState, (state) => {
+  const { gameDetails } = state;
+
+  return gameDetails.gamers.some((item) => {
+    return (
+      !isNumber(item.balance) ||
+      !isNumber(item.totalBuy) ||
+      !isNumber(item.totalResult)
+    );
+  });
+});
+
+export const gameResultsEquals = createSelector(selectGameState, (state) => {
+  const { gameDetails } = state;
+  return gameDetails.totalResult === 0;
+});

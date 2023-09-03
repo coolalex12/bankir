@@ -3,7 +3,14 @@
   <span
     >Проигрыш: {{ game.lose | number }} Выигрыш: +{{ game.win | number }}</span
   >
-  <span [ngClass]="{ invalid: game.totalResult !== 0 }"
-    >Итог: {{ game.totalResult | number }}</span
-  >
+  <span *ngIf="game.totalResult !== 0" class="invalid"
+    >Итог: {{ game.totalResult | number }}
+
+    <ng-container *ngIf="game.totalResult! > 0">
+      выигрыш > проигрыша
+    </ng-container>
+    <ng-container *ngIf="game.totalResult! < 0">
+      проигрыш > выигрыша
+    </ng-container>
+  </span>
 </div>

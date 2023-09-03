@@ -7,12 +7,13 @@ import {
   UserBuy,
 } from '@app/models';
 import { GameStoreFacade } from '@app/state/game';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { BalanceEditorDialogComponent } from '../balance-editor-dialog/balance-editor-dialog.component';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { AddBuyDialogComponent } from '../add-buy-dialog/add-buy-dialog.component';
+import { isNumber } from '@app/utils';
 
 @Component({
   selector: 'app-game-details',
@@ -30,8 +31,24 @@ export class GameDetailsComponent {
   public gameDetails$: Observable<GameDetails | undefined> =
     this.gameStoreFacade.gameDetails$;
 
+  public gamersHasEmptyFields$: Observable<boolean> =
+    this.gameStoreFacade.gamersHasEmptyFields$;
+
+  public gameResultsEquals$: Observable<boolean> =
+    this.gameStoreFacade.gameResultsEquals$;
+
+  public canCalculateResult$: Observable<boolean> = combineLatest([
+    this.gamersHasEmptyFields$,
+    this.gameResultsEquals$,
+  ]).pipe(
+    map(
+      ([gamersHasEmptyFields, gameResultsEquals]) =>
+        !gamersHasEmptyFields && gameResultsEquals
+    )
+  );
+
   public gamerClassName(userBuy: UserBuy) {
-    if (typeof userBuy.totalResult !== 'number') {
+    if (!isNumber(userBuy.totalResult)) {
       return '';
     }
     return {
@@ -61,7 +78,7 @@ export class GameDetailsComponent {
     dialogRef
       .afterClosed()
       .pipe(
-        filter((res) => res !== DialogResult.cancel && typeof res === 'number'),
+        filter((res) => res !== DialogResult.cancel && isNumber(res)),
         untilDestroyed(this)
       )
       .subscribe((result) => {
@@ -81,7 +98,7 @@ export class GameDetailsComponent {
     dialogRef
       .afterClosed()
       .pipe(
-        filter((res) => res !== DialogResult.cancel && typeof res === 'number'),
+        filter((res) => res !== DialogResult.cancel && isNumber(res)),
         untilDestroyed(this)
       )
       .subscribe((result) => {

@@ -21,6 +21,14 @@ export class GameStoreFacade {
     select(selectors.selectGamersNotInGame)
   );
 
+  public gamersHasEmptyFields$ = this.store.pipe(
+    select(selectors.gamersHasEmptyFields)
+  );
+
+  public gameResultsEquals$ = this.store.pipe(
+    select(selectors.gameResultsEquals)
+  );
+
   public loadGameSuccess$ = this.action$.pipe(
     ofType(actions.loadGameDetailsSuccess)
   );

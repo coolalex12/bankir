@@ -1,4 +1,5 @@
 import { Buy, GameDetails, Gamer, UserBuy } from '@app/models';
+import { isNumber } from '@app/utils';
 
 export const addBuyToGame = (
   game: GameDetails,
@@ -23,7 +24,7 @@ export const addBuyToGame = (
       return acc;
     }, 0);
 
-    if (typeof gamerBuy.balance === 'number') {
+    if (isNumber(gamerBuy.balance)) {
       gamerBuy.totalResult = gamerBuy.balance - gamerBuy.totalBuy;
     }
     const date = new Date().toISOString();
@@ -62,7 +63,7 @@ export const removeBuyFromGame = (
       return acc;
     }, 0);
 
-    if (typeof gamerBuy.balance === 'number') {
+    if (isNumber(gamerBuy.balance)) {
       gamerBuy.totalResult = gamerBuy.balance - gamerBuy.totalBuy;
     }
   }
@@ -121,13 +122,10 @@ export const calculateGameResults = (game: GameDetails): GameDetails => {
   game.lose = 0;
   game.totalBuy = game.gamers.reduce((acc, current) => {
     acc += current.totalBuy ?? 0;
-    if (typeof current.totalResult === 'number' && current.totalResult > 0) {
+    if (isNumber(current.totalResult) && current.totalResult > 0) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       game.win! += current.totalResult;
-    } else if (
-      typeof current.totalResult === 'number' &&
-      current.totalResult < 0
-    ) {
+    } else if (isNumber(current.totalResult) && current.totalResult < 0) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       game.lose! += current.totalResult;
     }

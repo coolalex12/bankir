@@ -1,4 +1,9 @@
-<div *ngIf="gameDetails$ | async as game" fxLayout="column" fxLayoutGap="10px">
+<div
+  *ngIf="gameDetails$ | async as game"
+  fxLayout="column"
+  fxLayoutGap="10px"
+  class="wrapper"
+>
   <div>
     <div
       *ngFor="let gamer of game.gamers"
@@ -6,7 +11,7 @@
       class="gamer-container"
       [ngClass]="gamerClassName(gamer)"
     >
-      <div fxLayout="row" fxLayoutGap="10px">
+      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
         <div fxLayout="row">
           <button
             mat-raised-button
@@ -14,7 +19,7 @@
             class="buy-btn"
             (click)="addBuyBtnClick(gamer.user)"
           >
-            +/-
+            <mat-icon>add</mat-icon>
           </button>
         </div>
 
@@ -59,26 +64,36 @@
   <app-game-results [game]="game"></app-game-results>
 
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="20px">
-    <button
-      mat-raised-button
-      color="primary"
-      class="buy-btn"
-      (click)="calcTransactions()"
-    >
-      Рассчитать переводы
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
-      class="buy-btn"
-      (click)="goToAddGamers()"
-    >
-      Добавить игроков
-    </button>
+    <div fxLayout="column">
+      <button
+        mat-raised-button
+        color="primary"
+        class="buy-btn"
+        [disabled]="!(canCalculateResult$ | async)"
+        (click)="calcTransactions()"
+      >
+        Рассчитать переводы
+      </button>
+      <mat-error *ngIf="gamersHasEmptyFields$ | async" class="validation-error">
+        Необходимо заполнить все поля у каждого игрока.
+      </mat-error>
+      <mat-error *ngIf="!(gameResultsEquals$ | async)" class="validation-error">
+        Cуммарный выигрыш должен равняться суммарному проигрышу.
+      </mat-error>
+    </div>
   </div>
 
   <app-transactions-list
     *ngIf="game.transactions"
     [transactions]="game.transactions"
   ></app-transactions-list>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="buy-btn"
+    (click)="goToAddGamers()"
+  >
+    Добавить игроков
+  </button>
 </div>

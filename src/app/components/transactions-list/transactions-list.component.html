@@ -1,4 +1,5 @@
 <div *ngFor="let transaction of transactions">
-  {{ transaction.sender.name }} {{ transaction.value }}
+  {{ transaction.sender.name }}
+  <span class="value">{{ transaction.value }}</span>
   {{ transaction.recipient.name }}
 </div>
