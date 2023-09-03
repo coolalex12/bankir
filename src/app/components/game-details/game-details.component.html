@@ -77,13 +77,8 @@
     </button>
   </div>
 
-  <!-- // TODO timofeev - вынести в отдельный компонент -->
-  <div *ngIf="game.transactions">
-    <!-- <hr /> -->
-
-    <div *ngFor="let transaction of game.transactions">
-      {{ transaction.sender.name }} {{ transaction.value }}
-      {{ transaction.recipient.name }}
-    </div>
-  </div>
+  <app-transactions-list
+    *ngIf="game.transactions"
+    [transactions]="game.transactions"
+  ></app-transactions-list>
 </div>
