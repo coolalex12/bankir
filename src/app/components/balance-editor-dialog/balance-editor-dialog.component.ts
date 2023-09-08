@@ -9,7 +9,8 @@ import { DialogResult } from '@app/models';
 })
 export class BalanceEditorDialogComponent {
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { balance: number },
+    @Inject(MAT_DIALOG_DATA)
+    public data: { balance: number; gamerName: string },
     public dialogRef: MatDialogRef<BalanceEditorDialogComponent>
   ) {}
 

@@ -72,7 +72,7 @@ export class GameDetailsComponent {
   public editBalanceBtnClick(userBuy: UserBuy): void {
     const dialogRef = this.dialog.open(BalanceEditorDialogComponent, {
       width: '280px',
-      data: { balance: userBuy.balance },
+      data: { balance: userBuy.balance, gamerName: userBuy.user.name },
     });
 
     dialogRef
