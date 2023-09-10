@@ -1,4 +1,9 @@
-<a [routerLink]="['/game', currentGameId$ | async]" class="link">Назад</a>
+<a
+  [routerLink]="['/game', currentGameId$ | async]"
+  class="link"
+  [replaceUrl]="true"
+  >Назад</a
+>
 <div *ngFor="let item of history$ | async as list">
   <span class="nominal">{{ item.nominal }}</span>
   {{ item.date | date: "HH:mm:ss" }}
