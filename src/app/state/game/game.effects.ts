@@ -23,6 +23,7 @@ import { Router } from '@angular/router';
 import { GameDetails } from '@app/models';
 import { TransactionsCalculatorService } from '../../utils/transactions-calculator.service';
 import { mapTo } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class GameEffects {
@@ -105,6 +106,9 @@ export class GameEffects {
         const gameForSave = addBuyToGame(clonedGame, gamer.id, nominal);
         return this.dbService.updateGame(gameForSave).pipe(
           map((game) => {
+            this.snackBar.open(`Закуп: ${gamer.name} ${nominal}`, '', {
+              duration: this.toastDurationInSeconds * 1000,
+            });
             return GameActions.updateGameDetailsSuccess({ game: gameForSave });
           }),
           catchError((error) => {
@@ -250,11 +254,14 @@ export class GameEffects {
     { dispatch: false }
   );
 
+  toastDurationInSeconds = 3;
+
   constructor(
     private actions$: Actions,
     private dbService: GameDbService,
     private store: Store,
     private router: Router,
-    private transactionsCalculator: TransactionsCalculatorService
+    private transactionsCalculator: TransactionsCalculatorService,
+    private snackBar: MatSnackBar
   ) {}
 }

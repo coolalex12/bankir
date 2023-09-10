@@ -3,7 +3,6 @@ import {
   AddBuyDialogData,
   DialogResult,
   GameDetails,
-  Gamer,
   UserBuy,
 } from '@app/models';
 import { GameStoreFacade } from '@app/state/game';
@@ -86,12 +85,15 @@ export class GameDetailsComponent {
       });
   }
 
-  public addBuyBtnClick(gamer: Gamer): void {
+  public addBuyBtnClick(gamer: UserBuy): void {
     const dialogRef = this.dialog.open<AddBuyDialogComponent, AddBuyDialogData>(
       AddBuyDialogComponent,
       {
         width: '480px',
-        data: { defaultValue: 200, gamerName: gamer.name },
+        data: {
+          defaultValue: gamer.lastBuy?.nominal ?? 200,
+          gamerName: gamer.user.name,
+        },
       }
     );
 
@@ -103,9 +105,9 @@ export class GameDetailsComponent {
       )
       .subscribe((result) => {
         if (result > 0) {
-          this.gameStoreFacade.addBuy(gamer, result);
+          this.gameStoreFacade.addBuy(gamer.user, result);
         } else {
-          this.gameStoreFacade.removeBuy(gamer, -result);
+          this.gameStoreFacade.removeBuy(gamer.user, -result);
         }
       });
   }
