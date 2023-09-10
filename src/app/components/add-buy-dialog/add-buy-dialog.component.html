@@ -3,7 +3,7 @@
   <div
     fxLayout="row"
     fxLayoutGap="20px"
-    fxLayoutAlign="start center"
+    fxLayoutAlign="space-between center"
     class="content"
   >
     <div fxLayout="column" fxLayoutGap="15px">
@@ -18,7 +18,13 @@
     </div>
 
     <mat-form-field>
-      <input matInput type="number" autocomplete="off" [(ngModel)]="value" />
+      <input
+        class="input"
+        matInput
+        type="number"
+        autocomplete="off"
+        [(ngModel)]="value"
+      />
     </mat-form-field>
 
     <div fxLayout="column" fxLayoutGap="15px">
@@ -33,14 +39,32 @@
     </div>
   </div>
 </div>
-<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+
+<div fxLayout="row" fxLayoutAlign="space-between center" class="presets">
+  <button
+    *ngFor="let preset of presets"
+    mat-raised-button
+    color="basic"
+    [class.active]="value === preset"
+    (click)="setValue(preset)"
+  >
+    {{ preset }}
+  </button>
+</div>
+
+<div
+  mat-dialog-actions
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  class="buttons"
+>
   <button
     mat-raised-button
     color="warn"
     [mat-dialog-close]="value"
     [disabled]="value == 0"
   >
-    Применить
+    Применить {{ value }}
   </button>
   <button mat-raised-button (click)="onCancelClick()" cdkFocusInitial>
     Отмена
@@ -49,6 +73,7 @@
 
 <ng-template #incrementButton let-value="value">
   <button mat-raised-button color="primary" (click)="incrementValue(value)">
-    {{ value }}
+    <span *ngIf="value > 0">+{{ value }}</span>
+    <span *ngIf="value < 0">{{ value }}</span>
   </button>
 </ng-template>

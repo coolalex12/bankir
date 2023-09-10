@@ -18,13 +18,19 @@ export class AddBuyDialogComponent {
     this.value = data.defaultValue;
   }
 
+  public readonly presets = [200, 500, 1000];
+
   public value: number;
 
   public onCancelClick(): void {
     this.dialogRef.close(DialogResult.cancel);
   }
 
-  public incrementValue(val: number) {
+  public incrementValue(val: number): void {
     this.value += val;
+  }
+
+  public setValue(val: number): void {
+    this.value = val;
   }
 }

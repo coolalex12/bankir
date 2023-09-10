@@ -89,7 +89,8 @@ export class GameDetailsComponent {
     const dialogRef = this.dialog.open<AddBuyDialogComponent, AddBuyDialogData>(
       AddBuyDialogComponent,
       {
-        width: '480px',
+        width: '100%',
+        maxWidth: '100%',
         data: {
           defaultValue: gamer.lastBuy?.nominal ?? 200,
           gamerName: gamer.user.name,

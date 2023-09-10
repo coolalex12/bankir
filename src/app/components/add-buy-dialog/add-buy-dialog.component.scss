@@ -1,9 +1,27 @@
 :host {
   ::ng-deep .mat-form-field-wrapper {
-    width: 45px !important;
+    width: 65px !important;
   }
 
   .content {
     padding-bottom: 20px;
   }
+}
+
+.input {
+  font-size: 24px;
+  text-align: center;
+}
+
+.presets {
+  margin-top: 20px;
+  margin-bottom: 30px;
+
+  .active {
+    border: 1px solid #345345;
+  }
+}
+
+.buttons {
+  margin-bottom: 1px;
 }
