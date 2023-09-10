@@ -33,9 +33,10 @@
             <span class="gamer-name">
               {{ gamer.user.name }}: {{ gamer.totalBuy | number }}
             </span>
-            <span *ngFor="let buy of gamer.buy">
-              {{ buy.nominal }}*{{ buy.count }}
-            </span>
+
+            <a class="show-buy" [routerLink]="['gamer-history', gamer.user.id]"
+              >закупы</a
+            >
           </div>
 
           <div fxLayout="row" fxLayoutAlign="start center">

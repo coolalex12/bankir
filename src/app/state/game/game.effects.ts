@@ -15,7 +15,6 @@ import { GameDbService } from '@app/db';
 import {
   addBuyToGame,
   addGamersToGame,
-  removeBuyFromGame,
   saveGamerBalance,
 } from '@app/utils/game-utils';
 import { Store, select } from '@ngrx/store';
@@ -138,31 +137,6 @@ export class GameEffects {
           }),
           catchError((error) => {
             return of(GameActions.addGamersToGameFailure({ error }));
-          })
-        );
-      })
-    );
-  });
-
-  public removeBuy$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(GameActions.removeBuyStart),
-      switchMap((action) =>
-        of(action).pipe(
-          withLatestFrom(
-            this.store.pipe(select(GameSelectors.selectGameDetails))
-          )
-        )
-      ),
-      switchMap(([{ gamer, nominal }, game]) => {
-        const clonedGame: GameDetails = JSON.parse(JSON.stringify(game));
-        const gameForSave = removeBuyFromGame(clonedGame, gamer.id, nominal);
-        return this.dbService.updateGame(gameForSave).pipe(
-          map((game) => {
-            return GameActions.updateGameDetailsSuccess({ game: gameForSave });
-          }),
-          catchError((error) => {
-            return of(GameActions.updateGameDetailsFailure({ error }));
           })
         );
       })

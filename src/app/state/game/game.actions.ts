@@ -92,3 +92,8 @@ export const addGamersToGameFailure = createAction(
   '[Game] Add Gamers To Game Failure',
   props<{ error: any }>()
 );
+
+export const setSelectedGamerId = createAction(
+  '[Game] Set Selected Gamer Id',
+  props<{ id: number }>()
+);

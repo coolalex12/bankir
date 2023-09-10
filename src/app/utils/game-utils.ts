@@ -1,4 +1,4 @@
-import { Buy, GameDetails, Gamer, UserBuy } from '@app/models';
+import { GameDetails, Gamer, UserBuy } from '@app/models';
 import { isNumber } from '@app/utils';
 
 export const addBuyToGame = (
@@ -7,20 +7,12 @@ export const addBuyToGame = (
   nominal: number
 ): GameDetails => {
   const gamerBuy = game.gamers.find((item) => item.user.id === gamerId);
+  const now = Date.now();
   if (gamerBuy !== undefined) {
-    const buyIndex: number = gamerBuy.buy.findIndex(
-      (item) => item.nominal === nominal
-    );
-    const buy =
-      buyIndex !== -1 ? gamerBuy.buy[buyIndex] : { nominal, count: 1 };
-    if (buyIndex !== -1) {
-      gamerBuy.buy.splice(buyIndex, 1, { ...buy, count: buy.count + 1 });
-    } else {
-      gamerBuy.buy.push(buy);
-    }
+    gamerBuy.buy.push({ id: now, nominal, date: now });
 
     gamerBuy.totalBuy = gamerBuy.buy.reduce((acc, current) => {
-      acc += current.count * current.nominal;
+      acc += current.nominal;
       return acc;
     }, 0);
 
@@ -29,43 +21,6 @@ export const addBuyToGame = (
     }
     const date = new Date().toISOString();
     gamerBuy.lastBuy = { date, nominal };
-  }
-
-  sortGamers(game);
-  calculateGameResults(game);
-  return game;
-};
-
-export const removeBuyFromGame = (
-  game: GameDetails,
-  gamerId: number,
-  nominal: number
-): GameDetails => {
-  const gamerBuy = game.gamers.find((item) => item.user.id === gamerId);
-  if (gamerBuy !== undefined) {
-    const buyIndex: number = findLastIndex<Buy>(
-      gamerBuy.buy,
-      (item) => item.nominal === nominal
-    );
-
-    if (buyIndex === -1) {
-      return game;
-    }
-
-    if (gamerBuy.buy[buyIndex].count > 1) {
-      gamerBuy.buy[buyIndex].count--;
-    } else {
-      gamerBuy.buy.splice(buyIndex, 1);
-    }
-
-    gamerBuy.totalBuy = gamerBuy.buy.reduce((acc, current) => {
-      acc += current.count * current.nominal;
-      return acc;
-    }, 0);
-
-    if (isNumber(gamerBuy.balance)) {
-      gamerBuy.totalResult = gamerBuy.balance - gamerBuy.totalBuy;
-    }
   }
 
   sortGamers(game);
@@ -92,24 +47,13 @@ export const addGamersToGame = (
   gamers: Gamer[],
   game: GameDetails
 ): GameDetails => {
-  const defaultNominal = 200;
-  const date = new Date().toISOString();
   const buy = gamers.map((item: Gamer) => ({
     user: {
       id: item.id,
       name: item.name,
     },
-    buy: [
-      {
-        nominal: defaultNominal,
-        count: 1,
-      },
-    ],
-    totalBuy: defaultNominal,
-    lastBuy: {
-      nominal: defaultNominal,
-      date,
-    },
+    buy: [],
+    totalBuy: 0,
   }));
 
   game.gamers.push(...buy);
@@ -150,8 +94,8 @@ function gamersComparator(a: UserBuy, b: UserBuy): 0 | 1 | -1 {
   }
 
   if (Boolean(a.lastBuy?.date) && Boolean(b.lastBuy?.date)) {
-    const dateA = new Date(a.lastBuy?.date);
-    const dateB = new Date(b.lastBuy?.date);
+    const dateA = new Date(a.lastBuy?.date as string);
+    const dateB = new Date(b.lastBuy?.date as string);
     const res = dateA > dateB ? 1 : -1;
     return res;
   }

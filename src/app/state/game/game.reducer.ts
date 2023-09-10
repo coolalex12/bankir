@@ -7,6 +7,7 @@ export const gameFeatureKey = 'game';
 export interface State {
   gameDetails: GameDetails;
   gamersForNewGame: Gamer[];
+  selectedGamerId?: number;
 }
 
 export const initialState: State = {
@@ -20,6 +21,11 @@ export const reducer = createReducer(
   on(GameActions.loadGamersForNewGameSuccess, (state, { gamers }) => ({
     ...state,
     gamersForNewGame: gamers,
+  })),
+
+  on(GameActions.setSelectedGamerId, (state, { id }) => ({
+    ...state,
+    selectedGamerId: id,
   })),
 
   // on(GameActions.loadGamesFailure, (state, action) => state),

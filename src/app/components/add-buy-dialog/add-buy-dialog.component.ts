@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AddBuyDialogData, DialogResult } from '@app/models';
-import { BalanceEditorDialogComponent } from '../balance-editor-dialog/balance-editor-dialog.component';
 
 @Component({
   selector: 'app-add-buy-dialog',
@@ -13,7 +12,7 @@ export class AddBuyDialogComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: AddBuyDialogData,
-    public dialogRef: MatDialogRef<BalanceEditorDialogComponent>
+    public dialogRef: MatDialogRef<AddBuyDialogComponent>
   ) {
     this.value = data.defaultValue;
   }

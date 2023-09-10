@@ -25,6 +25,7 @@ import { AddBuyDialogComponent } from './components/add-buy-dialog/add-buy-dialo
 import { EntitySelectListComponent } from './components/entity-select-list/entity-select-list.component';
 import { AddGamersComponent } from './components/add-gamers/add-gamers.component';
 import { TransactionsListComponent } from './components/transactions-list/transactions-list.component';
+import { GamerHistoryComponent } from './components/gamer-history/gamer-history.component';
 
 registerLocaleData(localeRu);
 @NgModule({
@@ -39,6 +40,7 @@ registerLocaleData(localeRu);
     EntitySelectListComponent,
     AddGamersComponent,
     TransactionsListComponent,
+    GamerHistoryComponent,
   ],
   imports: [
     BrowserModule,

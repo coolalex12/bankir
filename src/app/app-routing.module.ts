@@ -6,6 +6,8 @@ import { GameDetailsResolver } from './resolvers/game-details.resolver';
 import { CreateGameComponent } from './components/create-game/create-game.component';
 import { CreateGameResolver } from './resolvers/create-game.resolver';
 import { AddGamersComponent } from './components/add-gamers/add-gamers.component';
+import { GamerHistoryComponent } from './components/gamer-history/gamer-history.component';
+import { GamerHistoryResolver } from './resolvers/gamer-history.resolver';
 
 const routes: Routes = [
   {
@@ -18,6 +20,11 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersComponent,
+  },
+  {
+    path: 'game/:gameId/gamer-history/:gamerId',
+    component: GamerHistoryComponent,
+    resolve: { data: GamerHistoryResolver },
   },
   {
     path: 'game/create',

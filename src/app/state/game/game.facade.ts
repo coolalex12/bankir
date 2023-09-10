@@ -29,6 +29,10 @@ export class GameStoreFacade {
     select(selectors.gameResultsEquals)
   );
 
+  public currentGamerHistory$ = this.store.pipe(
+    select(selectors.selectCurrentGamerHistory)
+  );
+
   public loadGameSuccess$ = this.action$.pipe(
     ofType(actions.loadGameDetailsSuccess)
   );
@@ -49,10 +53,6 @@ export class GameStoreFacade {
     this.store.dispatch(actions.addBuyStart({ gamer, nominal }));
   }
 
-  public removeBuy(gamer: Gamer, nominal: number): void {
-    this.store.dispatch(actions.removeBuyStart({ gamer, nominal }));
-  }
-
   public saveGamerBalance(gamer: Gamer, balance: number): void {
     this.store.dispatch(actions.saveGamerBalanceStart({ gamer, balance }));
   }
@@ -67,5 +67,9 @@ export class GameStoreFacade {
 
   public redirectToAddGamers(): void {
     this.store.dispatch(actions.redirectToAddGamers());
+  }
+
+  public setSelectedGamerId(id: number): void {
+    this.store.dispatch(actions.setSelectedGamerId({ id }));
   }
 }

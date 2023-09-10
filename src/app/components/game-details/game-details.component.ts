@@ -71,7 +71,7 @@ export class GameDetailsComponent {
   public editBalanceBtnClick(userBuy: UserBuy): void {
     const dialogRef = this.dialog.open(BalanceEditorDialogComponent, {
       width: '280px',
-      data: { balance: userBuy.balance, gamerName: userBuy.user.name },
+      data: { balance: userBuy.balance ?? 0, gamerName: userBuy.user.name },
     });
 
     dialogRef
@@ -105,11 +105,7 @@ export class GameDetailsComponent {
         untilDestroyed(this)
       )
       .subscribe((result) => {
-        if (result > 0) {
-          this.gameStoreFacade.addBuy(gamer.user, result);
-        } else {
-          this.gameStoreFacade.removeBuy(gamer.user, -result);
-        }
+        this.gameStoreFacade.addBuy(gamer.user, result);
       });
   }
 }

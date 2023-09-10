@@ -16,6 +16,13 @@ export const selectGamersForNewGame = createSelector(
   (state) => state.gamersForNewGame
 );
 
+export const selectCurrentGamerHistory = createSelector(
+  selectGameState,
+  (state) =>
+    state.gameDetails.gamers.find((x) => x.user.id === state.selectedGamerId)
+      ?.buy
+);
+
 export const selectGamersInGame = createSelector(selectGameState, (state) =>
   state.gameDetails.gamers.map((item) => item.user)
 );

@@ -60,7 +60,7 @@ export interface UserBuy {
    */
   totalBuy?: number;
   totalResult?: number;
-  lastBuy: {
+  lastBuy?: {
     date: string;
     nominal: number;
   };

@@ -1,4 +1,5 @@
 export interface Buy {
+  id: number;
   nominal: number;
-  count: number;
+  date: number;
 }
