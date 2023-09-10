@@ -23,6 +23,11 @@ export const selectCurrentGamerHistory = createSelector(
       ?.buy
 );
 
+export const selectCurrentGameId = createSelector(
+  selectGameState,
+  (state) => state.gameDetails.id
+);
+
 export const selectGamersInGame = createSelector(selectGameState, (state) =>
   state.gameDetails.gamers.map((item) => item.user)
 );

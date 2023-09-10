@@ -8,8 +8,10 @@ export const addBuyToGame = (
 ): GameDetails => {
   const gamerBuy = game.gamers.find((item) => item.user.id === gamerId);
   const now = Date.now();
+  const date = new Date(now).toISOString();
+
   if (gamerBuy !== undefined) {
-    gamerBuy.buy.push({ id: now, nominal, date: now });
+    gamerBuy.buy.push({ id: now, nominal, date });
 
     gamerBuy.totalBuy = gamerBuy.buy.reduce((acc, current) => {
       acc += current.nominal;
@@ -19,7 +21,6 @@ export const addBuyToGame = (
     if (isNumber(gamerBuy.balance)) {
       gamerBuy.totalResult = gamerBuy.balance - gamerBuy.totalBuy;
     }
-    const date = new Date().toISOString();
     gamerBuy.lastBuy = { date, nominal };
   }
 

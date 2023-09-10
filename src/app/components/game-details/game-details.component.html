@@ -1,3 +1,5 @@
+<a routerLink="/" class="link">К списку игр</a>
+
 <div
   *ngIf="gameDetails$ | async as game"
   fxLayout="column"
@@ -31,11 +33,11 @@
         >
           <div fxLayout="row wrap" fxLayoutGap="5px">
             <span class="gamer-name">
-              {{ gamer.user.name }}: {{ gamer.totalBuy | number }}
+              {{ gamer.user.name }}
             </span>
 
             <a class="show-buy" [routerLink]="['gamer-history', gamer.user.id]"
-              >закупы</a
+              >закупы {{ gamer.totalBuy | number }}</a
             >
           </div>
 
@@ -52,7 +54,7 @@
               </button>
             </div>
 
-            <div class="total">
+            <div *ngIf="isNumber(gamer.totalResult)" class="total">
               Итог: <ng-container *ngIf="isWinner(gamer)">+</ng-container>
               {{ gamer.totalResult | number }}
             </div>

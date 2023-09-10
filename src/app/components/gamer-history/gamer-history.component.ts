@@ -9,5 +9,6 @@ import { GameStoreFacade } from '@app/state/game';
 })
 export class GamerHistoryComponent {
   constructor(private readonly gameStoreFacade: GameStoreFacade) {}
-  history = this.gameStoreFacade.currentGamerHistory$;
+  history$ = this.gameStoreFacade.currentGamerHistory$;
+  currentGameId$ = this.gameStoreFacade.currentGameId$;
 }

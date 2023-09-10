@@ -33,6 +33,10 @@ export class GameStoreFacade {
     select(selectors.selectCurrentGamerHistory)
   );
 
+  public currentGameId$ = this.store.pipe(
+    select(selectors.selectCurrentGameId)
+  );
+
   public loadGameSuccess$ = this.action$.pipe(
     ofType(actions.loadGameDetailsSuccess)
   );

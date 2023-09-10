@@ -26,6 +26,7 @@ export class GameDetailsComponent {
     private readonly gameStoreFacade: GameStoreFacade,
     private readonly dialog: MatDialog
   ) {}
+  isNumber = isNumber;
 
   public gameDetails$: Observable<GameDetails | undefined> =
     this.gameStoreFacade.gameDetails$;
