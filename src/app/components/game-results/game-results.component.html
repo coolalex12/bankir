@@ -1,9 +1,13 @@
 <div *ngIf="game" fxLayout="column">
-  <span>Размер банка: {{ game.totalBuy | number }}</span>
+  <div fxLayout="row" fxLayoutGap="4px">
+    <span>Банк: {{ game.totalBuy | number }}</span>
+    <span *ngIf="isNumber(game.lose)">Проигрыш: {{ game.lose | number }}</span>
+    <span *ngIf="isNumber(game.win)"> Выигрыш: +{{ game.win | number }}</span>
+  </div>
+
   <span
-    >Проигрыш: {{ game.lose | number }} Выигрыш: +{{ game.win | number }}</span
-  >
-  <span *ngIf="game.totalResult !== 0" class="invalid"
+    *ngIf="isNumber(game.totalResult) && game.totalResult !== 0"
+    class="invalid"
     >Итог: {{ game.totalResult | number }}
 
     <ng-container *ngIf="game.totalResult! > 0">

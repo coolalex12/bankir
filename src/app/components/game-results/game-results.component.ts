@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { GameDetails } from '@app/models';
+import { isNumber } from '@app/utils';
 
 @Component({
   selector: 'app-game-results',
@@ -9,5 +10,5 @@ import { GameDetails } from '@app/models';
 })
 export class GameResultsComponent {
   @Input() public game: GameDetails | null | undefined;
-  constructor() {}
+  isNumber = isNumber;
 }
