@@ -1,6 +1,6 @@
 :host {
   ::ng-deep .mat-form-field-wrapper {
-    width: 65px !important;
+    width: 80px !important;
   }
 
   .content {
@@ -9,13 +9,14 @@
 }
 
 .input {
-  font-size: 24px;
+  font-size: 32px;
+  color: #f43232;
   text-align: center;
 }
 
 .presets {
   margin-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 45px;
 
   .active {
     border: 1px solid #345345;

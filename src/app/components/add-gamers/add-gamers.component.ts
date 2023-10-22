@@ -14,6 +14,7 @@ export class AddGamersComponent {
   gamersFormControl = new FormControl();
 
   items$ = this.gameStoreFacade.gamersNotInGame$;
+  currentGameId$ = this.gameStoreFacade.currentGameId$;
 
   get isAddButtonDisabled(): boolean {
     return (
