@@ -228,7 +228,7 @@ export class GameEffects {
     { dispatch: false }
   );
 
-  toastDurationInSeconds = 3;
+  toastDurationInSeconds = 5;
 
   constructor(
     private actions$: Actions,
