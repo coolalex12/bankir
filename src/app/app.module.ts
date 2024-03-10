@@ -26,6 +26,9 @@ import { EntitySelectListComponent } from './components/entity-select-list/entit
 import { AddGamersComponent } from './components/add-gamers/add-gamers.component';
 import { TransactionsListComponent } from './components/transactions-list/transactions-list.component';
 import { GamerHistoryComponent } from './components/gamer-history/gamer-history.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { version } from '../../package.json';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 registerLocaleData(localeRu);
 @NgModule({
@@ -60,8 +63,18 @@ registerLocaleData(localeRu);
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: true,
+      registrationStrategy: 'registerImmediately',
+    }),
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private snackBar: MatSnackBar) {
+    snackBar.open(`Version: ${version}`, '', {
+      duration: 2 * 1000,
+    });
+  }
+}
