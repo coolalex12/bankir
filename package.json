@@ -1,6 +1,6 @@
 {
   "name": "bankir",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "build": "ng build --prod --base-href 'https://coolalex12.github.io/bankir/'",
