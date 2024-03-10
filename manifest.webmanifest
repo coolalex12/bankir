@@ -1,8 +1,8 @@
 {
   "name": "bankir",
   "short_name": "bankir",
-  "theme_color": "#e63a3a",
-  "background_color": "#e63a3a",
+  "theme_color": "#4b6fe1",
+  "background_color": "#4b6fe1",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

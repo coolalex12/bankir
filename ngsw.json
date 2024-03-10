@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1710048205131,
+  "timestamp": 1710048597087,
   "index": "/bankir/index.html",
   "assetGroups": [
     {
@@ -56,7 +56,7 @@
     "/bankir/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
     "/bankir/index.html": "cd8be989f58cf79d99b22c669951069542279fe1",
     "/bankir/main.951d83b319649ae7f966.js": "8516bc45b153b2454b9a3d584382bef1970322eb",
-    "/bankir/manifest.webmanifest": "085a50f8a267d5335e20553fcef12f6d7d2e445a",
+    "/bankir/manifest.webmanifest": "36cfcc91e739a4a5d639e7524d80e21a8bd896e0",
     "/bankir/polyfills.d15628b9ba7248669cd9.js": "f888b31e000d9b05c8c3fef19c325d813f2b7e1b",
     "/bankir/runtime.d005d4b576ac6ff1db26.js": "63ee27878964ceaf8098adfcab5249eb5cfe3639",
     "/bankir/styles.93d71b30add21bece084.css": "e9c31c1f677a77753e335656a34aa258ba5eddfe"
