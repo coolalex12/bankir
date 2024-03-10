@@ -1,0 +1,83 @@
+{
+  "configVersion": 1,
+  "timestamp": 1710045155688,
+  "index": "/bankir/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/bankir/4.278860b593fc73210575.js",
+        "/bankir/favicon.ico",
+        "/bankir/index.html",
+        "/bankir/main.bd535e7fccbea5e1fb87.js",
+        "/bankir/manifest.webmanifest",
+        "/bankir/polyfills.d15628b9ba7248669cd9.js",
+        "/bankir/runtime.d005d4b576ac6ff1db26.js",
+        "/bankir/styles.93d71b30add21bece084.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/bankir/assets/icons/icon-128x128.png",
+        "/bankir/assets/icons/icon-144x144.png",
+        "/bankir/assets/icons/icon-152x152.png",
+        "/bankir/assets/icons/icon-192x192.png",
+        "/bankir/assets/icons/icon-384x384.png",
+        "/bankir/assets/icons/icon-512x512.png",
+        "/bankir/assets/icons/icon-72x72.png",
+        "/bankir/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/bankir/4.278860b593fc73210575.js": "268a96de3344b4244ed0f3b43390e8195e6792ec",
+    "/bankir/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/bankir/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/bankir/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/bankir/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/bankir/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/bankir/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/bankir/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/bankir/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/bankir/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/bankir/index.html": "2313266bd2e58bf583048818197d656da5109951",
+    "/bankir/main.bd535e7fccbea5e1fb87.js": "b1457e99c9fac7c957114f053e445a2e6fc5fbfe",
+    "/bankir/manifest.webmanifest": "085a50f8a267d5335e20553fcef12f6d7d2e445a",
+    "/bankir/polyfills.d15628b9ba7248669cd9.js": "f888b31e000d9b05c8c3fef19c325d813f2b7e1b",
+    "/bankir/runtime.d005d4b576ac6ff1db26.js": "63ee27878964ceaf8098adfcab5249eb5cfe3639",
+    "/bankir/styles.93d71b30add21bece084.css": "e9c31c1f677a77753e335656a34aa258ba5eddfe"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
