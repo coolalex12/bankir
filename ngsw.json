@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1710048597087,
+  "timestamp": 1710048933171,
   "index": "/bankir/index.html",
   "assetGroups": [
     {
@@ -14,7 +14,7 @@
         "/bankir/4.278860b593fc73210575.js",
         "/bankir/favicon.ico",
         "/bankir/index.html",
-        "/bankir/main.951d83b319649ae7f966.js",
+        "/bankir/main.c5fb8254fe2401d8d940.js",
         "/bankir/manifest.webmanifest",
         "/bankir/polyfills.d15628b9ba7248669cd9.js",
         "/bankir/runtime.d005d4b576ac6ff1db26.js",
@@ -54,8 +54,8 @@
     "/bankir/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/bankir/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/bankir/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/bankir/index.html": "cd8be989f58cf79d99b22c669951069542279fe1",
-    "/bankir/main.951d83b319649ae7f966.js": "8516bc45b153b2454b9a3d584382bef1970322eb",
+    "/bankir/index.html": "155c721d0c9520ef615483cf5af7470ac1a164b3",
+    "/bankir/main.c5fb8254fe2401d8d940.js": "4ad7c66f9bfe46c3d8c61e226027f534ab159003",
     "/bankir/manifest.webmanifest": "36cfcc91e739a4a5d639e7524d80e21a8bd896e0",
     "/bankir/polyfills.d15628b9ba7248669cd9.js": "f888b31e000d9b05c8c3fef19c325d813f2b7e1b",
     "/bankir/runtime.d005d4b576ac6ff1db26.js": "63ee27878964ceaf8098adfcab5249eb5cfe3639",
