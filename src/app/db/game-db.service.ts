@@ -78,7 +78,7 @@ export class GameDbService {
       },
       {
         id: 8,
-        name: 'Дима Плыс',
+        name: 'Дима П',
       },
       {
         id: 9,
