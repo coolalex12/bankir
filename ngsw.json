@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1710048933171,
+  "timestamp": 1710065585266,
   "index": "/bankir/index.html",
   "assetGroups": [
     {
@@ -30,11 +30,8 @@
         "ignoreVary": true
       },
       "urls": [
-        "/bankir/assets/icons/icon-128x128.png",
         "/bankir/assets/icons/icon-144x144.png",
-        "/bankir/assets/icons/icon-152x152.png",
         "/bankir/assets/icons/icon-192x192.png",
-        "/bankir/assets/icons/icon-384x384.png",
         "/bankir/assets/icons/icon-512x512.png",
         "/bankir/assets/icons/icon-72x72.png",
         "/bankir/assets/icons/icon-96x96.png"
@@ -45,14 +42,11 @@
   "dataGroups": [],
   "hashTable": {
     "/bankir/4.278860b593fc73210575.js": "268a96de3344b4244ed0f3b43390e8195e6792ec",
-    "/bankir/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
-    "/bankir/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
-    "/bankir/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
-    "/bankir/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
-    "/bankir/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
-    "/bankir/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
-    "/bankir/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
-    "/bankir/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/bankir/assets/icons/icon-144x144.png": "f4e30ce7d77d97898954da69765df7cda992a856",
+    "/bankir/assets/icons/icon-192x192.png": "1c14bc1414c423bc29d7d04c74e910977534ad6a",
+    "/bankir/assets/icons/icon-512x512.png": "1c44b5920585c723bbfe29fa3595ea6bdc993c98",
+    "/bankir/assets/icons/icon-72x72.png": "5b9ff3140e5fe0320c4f7377668c0a5fd0965e69",
+    "/bankir/assets/icons/icon-96x96.png": "a3bf590e415a53af74a5c0d9b9d5c3113aa07fe1",
     "/bankir/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
     "/bankir/index.html": "155c721d0c9520ef615483cf5af7470ac1a164b3",
     "/bankir/main.c5fb8254fe2401d8d940.js": "4ad7c66f9bfe46c3d8c61e226027f534ab159003",
