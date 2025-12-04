@@ -9,24 +9,22 @@ import { DB_CHEMA } from './db-shema';
   providedIn: 'root',
 })
 export class GameDbService {
-  constructor(
-    private readonly dbService: NgxIndexedDBService<GameDetailsDto>
-  ) {}
+  constructor(private readonly dbService: NgxIndexedDBService) {}
 
   private readonly gamesTableName = DB_CHEMA.tables.games.tableName;
 
-  public createGame(game: GameDetails): Observable<number> {
+  public createGame(game: GameDetails): Observable<GameDetailsDto> {
     return this.dbService.add(this.gamesTableName, GameDetails.toDto(game));
   }
 
   public getGame(gameId: number): Observable<GameDetails> {
     return this.dbService
-      .getByKey(this.gamesTableName, gameId)
+      .getByKey<GameDetailsDto>(this.gamesTableName, gameId)
       .pipe(map(GameDetails.fromDto));
   }
 
   public getGames(): Observable<GameDetails[]> {
-    return this.dbService.getAll(this.gamesTableName).pipe(
+    return this.dbService.getAll<GameDetailsDto>(this.gamesTableName).pipe(
       map((gameDetailsDto) => {
         const gameDetails = gameDetailsDto.map(GameDetails.fromDto);
         const sorted = this.sortGames(gameDetails);
