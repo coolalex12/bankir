@@ -31,7 +31,7 @@ export class GameEffects {
       ofType(GameActions.createGameDetailsStart),
       switchMap(({ game }) =>
         this.dbService.createGame(game).pipe(
-          map((id) => {
+          map(({ id }) => {
             return GameActions.createGameDetailsSuccess({
               game: { ...game, id },
             });

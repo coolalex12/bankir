@@ -7,7 +7,11 @@
     formArrayName="array"
     *ngFor="let control of formArray.controls; let i = index"
   >
-    <mat-checkbox [formControlName]="i" class="checkbox">
+    <mat-checkbox
+      [formControlName]="i"
+      class="checkbox"
+      [attr.data-testid]="dataTestIdPrefix + '-' + i"
+    >
       {{ items[i]?.name }}
     </mat-checkbox>
   </div>

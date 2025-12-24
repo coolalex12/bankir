@@ -49,6 +49,8 @@ export class EntitySelectListComponent implements ControlValueAccessor {
     this.fillFormArray(val);
   }
 
+  @Input() dataTestIdPrefix!: string;
+
   get items(): Entity[] {
     return this._items;
   }
