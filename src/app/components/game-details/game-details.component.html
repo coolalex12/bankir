@@ -8,7 +8,7 @@
 >
   <div>
     <div
-      *ngFor="let gamer of game.gamers"
+      *ngFor="let gamer of game.gamers; let i = index"
       fxLayout="column"
       class="gamer-container"
       [ngClass]="gamerClassName(gamer)"
@@ -19,6 +19,7 @@
             mat-raised-button
             color="primary"
             class="buy-btn"
+            [attr.data-testid]="'add-buy-button-' + i"
             (click)="addBuyBtnClick(gamer)"
           >
             <mat-icon>add</mat-icon>
@@ -36,7 +37,10 @@
               {{ gamer.user.name }}
             </span>
 
-            <a class="show-buy" [routerLink]="['gamer-history', gamer.user.id]"
+            <a
+              class="show-buy"
+              [routerLink]="['gamer-history', gamer.user.id]"
+              [attr.data-testid]="'user-buy-sum-' + i"
               >закупы {{ gamer.totalBuy | number }}</a
             >
           </div>
@@ -49,12 +53,17 @@
                 color="primary"
                 class="btn-edit"
                 (click)="editBalanceBtnClick(gamer)"
+                [attr.data-testid]="'edit-balance-button-' + i"
               >
                 <mat-icon>create</mat-icon>
               </button>
             </div>
 
-            <div *ngIf="isNumber(gamer.totalResult)" class="total">
+            <div
+              *ngIf="isNumber(gamer.totalResult)"
+              class="total"
+              [attr.data-testid]="'user-result-' + i"
+            >
               Итог: <ng-container *ngIf="isWinner(gamer)">+</ng-container>
               {{ gamer.totalResult | number }}
             </div>
@@ -74,6 +83,7 @@
         class="buy-btn"
         [disabled]="!(canCalculateResult$ | async)"
         (click)="calcTransactions()"
+        data-testid="calculate-results-button"
       >
         Рассчитать переводы
       </button>
@@ -89,6 +99,7 @@
   <app-transactions-list
     *ngIf="game.transactions"
     [transactions]="game.transactions"
+    data-testid="transactions-list"
   ></app-transactions-list>
 
   <button

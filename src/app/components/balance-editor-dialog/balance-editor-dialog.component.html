@@ -9,11 +9,17 @@
       autocomplete="off"
       [(ngModel)]="data.balance"
       cdkFocusInitial
+      data-testid="edit-balance-input"
     />
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-raised-button color="primary" [mat-dialog-close]="data.balance">
+  <button
+    mat-raised-button
+    color="primary"
+    [mat-dialog-close]="data.balance"
+    data-testid="save-balance-button"
+  >
     Сохранить
   </button>
   <button mat-raised-button (click)="onCancelClick()">Отмена</button>
