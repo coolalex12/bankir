@@ -71,10 +71,10 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: {
-    command:
-      '/Users/a.timofeev/.nvm/versions/node/v16.13.1/bin/node npm run start',
-    url: 'http://localhost:4200',
-    reuseExistingServer: !process.env.CI,
-  },
+  // TODO: нужно сперва обновить ангуляр минимум до 13 версии, чтоб сервер запускался на 18 ноде
+  // webServer: {
+  //   command: 'npm run start',
+  //   url: 'http://localhost:4200',
+  //   reuseExistingServer: !process.env.CI,
+  // },
 });
